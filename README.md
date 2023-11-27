@@ -16,3 +16,49 @@ If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has a
    1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
    2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
 2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+
+
+# 项目页面结构
+views
+   login
+      index.vue                       //登录页
+      serviceAgree                    // 服务协议
+      privacyPolicy.vue               // 隐私政策
+   task
+      index.vue                       // 任务主页
+      search.vue                      // 任务搜索
+      details.vue                     // 任务详情
+      companySource.vue               // 公司任务主页
+   contract
+      index.vue                       // 合约主页
+      details.vue                     // 合约详情
+      progress.vue                    // 合约进度
+   message
+      index.vue                       // 合约主页
+      systemList.vue                  // 系统消息列表
+      systemDetails.vue               // 系统消息详情
+      talk.vue                        // 对话消息
+   my
+      index.vue                       // 我的主页
+      user                            // 用户中心
+         index.vue                    // 个人信息主页
+         authReal.vue                 // 实名认证
+         certified.vue                // 已完成实名认证
+         identitySwitch.vue           // 切换身份
+      set
+         index.vue                    // 设置主页
+      feedback
+         index.vue                    // 反馈主页
+      account
+         index.vue                    // 账户主页
+         advance.vue                  // 账户提现
+         coinExplain.vue              // 无忧币说明
+         depositExplain.vue           // 押金说明
+      resume
+         index.vue                    // 简历主页
+         preview.vue                  // 简历预览
+      collect
+         index.vue                    // 收藏主页
+   talent
+      index.vue                       // 人才主页
+      details.vue                     // 人才详情
