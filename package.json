@@ -12,7 +12,8 @@
     "@vueuse/core": "^10.6.1",
     "pinia": "^2.1.7",
     "vant": "^4.8.0",
-    "vue": "^3.3.8"
+    "vue": "^3.3.8",
+    "vue-router": "^4.2.5"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.5.0",
