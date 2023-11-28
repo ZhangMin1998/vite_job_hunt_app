@@ -22,7 +22,7 @@ If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has a
 views
    login
       index.vue                       //登录页
-      serviceAgree                    // 服务协议
+      serviceAgree.vue                  // 服务协议
       privacyPolicy.vue               // 隐私政策
    task
       index.vue                       // 任务主页
