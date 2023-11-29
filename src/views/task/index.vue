@@ -1,5 +1,28 @@
 <template>
-  <TaskList :taskList="taskList"></TaskList>
+  <div class="task_page">
+    <div class="task_top">
+      <div class="task_top_city">
+        <i></i>
+        <strong>深圳</strong>
+        <span></span>
+      </div>
+      <input type="text" readonly placeholder="请输入想要搜素的内容">
+      <router-link to="/message/systemList" class="task-icon-message"></router-link>
+    </div>
+    <Banner></Banner>
+    <div class="task_title">
+      <h3>最新任务</h3>
+      <div class="task-positon-pop">
+        职位类型
+        <span></span>
+      </div>
+      <div class="task-screen-pop">
+        筛选
+        <span></span>
+      </div>
+    </div>
+    <TaskList :taskList="taskList"></TaskList>
+  </div>
   <FooterTabbar></FooterTabbar>
 </template>
 
@@ -7,6 +30,8 @@
 import { reactive } from 'vue';
 import FooterTabbar from '@/components/FooterTabbar.vue'
 import TaskList from '@/components/list/TaskList.vue'
+import Banner from '@/views/task/components/Banner.vue'
+// import CitySwitch from '@/views/task/components/CitySwitch.vue'
 
 const taskList = reactive([
   {id:1},{id:2},{id:3},{id:4}
@@ -14,7 +39,85 @@ const taskList = reactive([
 </script>
 
 <style lang="less" scoped>
-// body{
-//   background-color: #f5f5f5;
-// }
+.task_page{
+  background: #f9f9f9;
+  padding: 0 0.59rem 3rem;
+  min-height: calc(100vh - 3rem);
+  .task_top{
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0 0.91rem;
+    .task_top_city{
+      display: flex;
+      align-items: center;
+      i{
+        width: 1.04rem;
+        height: 1.01rem;
+        background: url('@/assets/img/icon/icon-place.png') no-repeat;
+        background-size: 100%;
+      }
+      strong{
+        font-size: 0.8rem;
+        font-weight: 500;
+        color: #333333;
+        margin-left: 0.1rem;
+      }
+      span{
+        margin: 0 0.6rem 0 0.2rem;
+        display: inline-block;
+        // border-bottom: 0.18rem solid transparent;
+        border-left: 0.18rem solid transparent;
+        border-right: 0.18rem solid transparent;
+        border-top: 0.36rem solid #333333;
+      }
+    }
+    input{
+      flex: 1;
+      height: 1.71rem;
+      background: #ffffff url('@/assets/img/icon/icon-search.png') 0.35rem 0.38rem no-repeat;
+      background-size: 7%;
+      border: 0.03px solid #EDEDED;
+      border-radius: 0.85rem;
+      font-size: 0.69rem;
+      font-weight: 300;
+      color: #999;
+      padding-left: 1.7rem;
+    }
+    .task-icon-message{
+      width: 1.31rem;
+      height: 1.28rem;
+      background: url('@/assets/img/icon/icon-remind.png') no-repeat;
+      background-size: 100%;
+      margin-left: 0.27rem;
+    }
+  }
+  .task_title{
+    display: flex;
+    font-weight: bold;
+    // margin: 1.44rem 0 0.67rem 0;
+    margin: 0 0 0.67rem 0;
+    h3{
+      flex: 1;
+      font-size: 0.96rem;
+      line-height: 0.96rem;
+      font-weight: bold;
+      color: #333333;
+    }
+    .task-positon-pop,.task-screen-pop{
+      font-size: 0.75rem;
+      line-height: 0.75rem;
+      font-weight: 300;
+      color: #666666;
+      margin-left: 0.56rem;
+      span{
+        margin-left: 0.25rem;
+        display: inline-block;
+        // border-bottom: 0.18rem solid transparent;
+        border-left: 0.18rem solid transparent;
+        border-right: 0.18rem solid transparent;
+        border-top: 0.36rem solid #333333;
+      }
+    }
+  }
+}
 </style>
