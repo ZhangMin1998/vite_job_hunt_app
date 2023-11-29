@@ -5,16 +5,16 @@
       <h3>验证码登录</h3>
       <div class="login_form_item">
         <i class="icon_phone"></i>
-        <input placeholder="请输入手机号" type="text" />
+        <input placeholder="请输入手机号" type="text" v-model="state.accounts"/>
       </div>
       <div class="login_form_item">
         <i class="icon_code"></i>
-        <input placeholder="请输入验证码" type="text" />
-        <span>获取验证码</span>
+        <input placeholder="请输入验证码" type="text" v-model="state.code"/>
+        <span @click="getCodeChange">{{ state.codeText }}</span>
       </div>
       <van-button type="primary" block>登录</van-button>
       <div class="login_form_label">
-        <van-checkbox>我已阅读</van-checkbox>
+        <van-checkbox v-model="state.checked">我已阅读</van-checkbox>
         <router-link to="/login/serviceAgree">《IT企业平台服务协议》</router-link>和
         <router-link to="/login/privacyPolicy">《隐私政策》</router-link>
       </div>
@@ -23,7 +23,42 @@
 </template>
 
 <script setup lang="ts">
+import { reactive } from 'vue'
+import { getCode, login } from '@/api/user'
+// import { userStore } from '@/store/user'
+// import { Toast } from 'vant'
 
+// const store = userStore()
+// const router = useRouter()
+const state = reactive({
+  accounts: '',
+  code: '',
+  checked: true,
+  codeText: '获取验证码',
+  time: 60,
+  interTimeCode: 0
+})
+
+const getCodeChange = async () => {
+  if (state.interTimeCode) return
+  const res = await getCode({
+    accounts: state.accounts
+  })
+  if (res) {
+    // 验证码倒计时开始
+    state.interTimeCode = setInterval(() => {
+      state.time--
+      if (state.time <= 0) {
+        clearInterval(state.interTimeCode)
+        state.time = 60
+        state.codeText = '获取验证码'
+      } else {
+        state.codeText = `重新发送${state.time}s`
+      }
+    }, 1000)
+    state.code = (res as any).code
+  }
+}
 </script>
 
 <style lang="less" scoped>
