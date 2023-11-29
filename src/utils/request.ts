@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { Toast } from 'vant'
+import { showToast } from 'vant'
 
 let baseURL = '/api'
 
@@ -32,7 +32,7 @@ service.interceptors.response.use(
       if (res.code == 200) {
         return res.result
       } else {
-        new Toast(res.success)
+        showToast(res.success)
       }
     }
     

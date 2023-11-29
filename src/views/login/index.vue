@@ -1,6 +1,6 @@
 <template>
   <div class="login_page">
-    <van-icon class="icon_left" name="arrow-left"/>
+    <van-icon class="icon_left" name="arrow-left" @click-left="onClickLeft"/>
     <div class="login_form">
       <h3>验证码登录</h3>
       <div class="login_form_item">
@@ -12,7 +12,7 @@
         <input placeholder="请输入验证码" type="text" v-model="state.code"/>
         <span @click="getCodeChange">{{ state.codeText }}</span>
       </div>
-      <van-button type="primary" block>登录</van-button>
+      <van-button type="primary" block @click="loginSubmit">登录</van-button>
       <div class="login_form_label">
         <van-checkbox v-model="state.checked">我已阅读</van-checkbox>
         <router-link to="/login/serviceAgree">《IT企业平台服务协议》</router-link>和
@@ -24,12 +24,12 @@
 
 <script setup lang="ts">
 import { reactive } from 'vue'
+import { showToast } from 'vant'
 import { getCode, login } from '@/api/user'
-// import { userStore } from '@/store/user'
-// import { Toast } from 'vant'
+import { userStore } from '@/store/user'
 
-// const store = userStore()
-// const router = useRouter()
+const store = userStore()
+const router = useRouter()
 const state = reactive({
   accounts: '',
   code: '',
@@ -57,6 +57,40 @@ const getCodeChange = async () => {
       }
     }, 1000)
     state.code = (res as any).code
+  }
+}
+const onClickLeft = () => history.back()
+
+const loginSubmit = async () => {
+  if (!state.code) {
+    showToast('请输入验证码')
+    return
+  }
+  if(!state.checked){
+    showToast('请勾选我已阅读')
+    return
+  }
+  const res = await login({
+    accounts: state.accounts,
+    code: state.code
+  })
+  if ((res as any).errCode === 200) {
+    // 登录成功后需要把登录返回的数据存到store
+    store.setUserInfo(res.data)
+    // 进入人才端
+    if(store.role == '1'){
+      router.push('/task')
+    }
+    // 进入管理端
+    if(store.role == '2'){
+      router.push('/admin/home')
+    }
+    // 进入企业端
+    if(store.role == '3'){
+      router.push('/talent')
+    }
+  } else {
+    showToast((res as any).msg)
   }
 }
 </script>
