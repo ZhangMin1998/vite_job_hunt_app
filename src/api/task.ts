@@ -10,10 +10,10 @@ export function getCode(data: any) {
 }
 
 
-// 获取协议文件
-export function getPolicy(data: any) {
+// 获取城市列表
+export function getCityList(data: any) {
   return request({
-    url: '/policy_protocol/list',
+    url: '/sys/city/list',
     method: 'get',
     params: data
   })

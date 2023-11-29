@@ -1,7 +1,7 @@
 <template>
   <div class="task_page">
     <div class="task_top">
-      <div class="task_top_city">
+      <div class="task_top_city" @click="state.citySwitchBool = true">
         <i></i>
         <strong>深圳</strong>
         <span></span>
@@ -22,6 +22,10 @@
       </div>
     </div>
     <TaskList :taskList="taskList"></TaskList>
+    <!--切换城市弹窗-->
+    <van-popup v-model:show="state.citySwitchBool" position="top" duration="0" :style="{ width: '100%',height: '100%' }">
+      <CitySwitch></CitySwitch>
+    </van-popup>
   </div>
   <FooterTabbar></FooterTabbar>
 </template>
@@ -31,11 +35,14 @@ import { reactive } from 'vue';
 import FooterTabbar from '@/components/FooterTabbar.vue'
 import TaskList from '@/components/list/TaskList.vue'
 import Banner from '@/views/task/components/Banner.vue'
-// import CitySwitch from '@/views/task/components/CitySwitch.vue'
+import CitySwitch from '@/views/task/components/CitySwitch.vue'
 
 const taskList = reactive([
   {id:1},{id:2},{id:3},{id:4}
 ])
+const state = reactive({
+  citySwitchBool: false
+})
 </script>
 
 <style lang="less" scoped>
