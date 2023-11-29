@@ -3,7 +3,7 @@
     <div class="task_top">
       <div class="task_top_city" @click="state.citySwitchBool = true">
         <i></i>
-        <strong>深圳</strong>
+        <strong>{{ store.cityValue }}</strong>
         <span></span>
       </div>
       <input type="text" readonly placeholder="请输入想要搜素的内容">
@@ -36,12 +36,23 @@ import FooterTabbar from '@/components/FooterTabbar.vue'
 import TaskList from '@/components/list/TaskList.vue'
 import Banner from '@/views/task/components/Banner.vue'
 import CitySwitch from '@/views/task/components/CitySwitch.vue'
+import { taskStore } from '@/store/task'
 
+const store = taskStore()
 const taskList = reactive([
   {id:1},{id:2},{id:3},{id:4}
 ])
 const state = reactive({
   citySwitchBool: false
+})
+const closeCitySwitch = (name:string) => {
+  if (name) {
+    store.setCityValue(name)
+  }
+  state.citySwitchBool = false
+}
+provide('popup',{
+  closeCitySwitch
 })
 </script>
 
