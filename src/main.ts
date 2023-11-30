@@ -4,7 +4,7 @@ import './assets/css/style.css'
 import App from './App.vue'
 import store from './store'
 import router from './router'
-import { Button, NavBar, Tabbar, TabbarItem, Checkbox, Toast, Icon, Popup } from 'vant'
+import { Button, NavBar, Tabbar, TabbarItem, Checkbox, Toast, Icon, Popup, Swipe, SwipeItem } from 'vant'
 import './utils/rem'
 
 const app = createApp(App)
@@ -16,6 +16,8 @@ app.use(Checkbox)
 app.use(Toast)
 app.use(Icon)
 app.use(Popup)
+app.use(Swipe)
+app.use(SwipeItem)
 app.use(store)
 app.use(router)
 app.mount('#app')

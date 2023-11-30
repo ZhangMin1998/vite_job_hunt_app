@@ -21,9 +21,12 @@
         <span></span>
       </div>
     </div>
+
+    <!-- 任务列表 -->
     <TaskList :taskList="taskList"></TaskList>
+
     <!--切换城市弹窗-->
-    <van-popup v-model:show="state.citySwitchBool" position="top" duration="0" :style="{ width: '100%',height: '100%' }">
+    <van-popup v-model:show="state.citySwitchBool" position="left" duration="0.2" :style="{ width: '100%',height: '100%' }">
       <CitySwitch></CitySwitch>
     </van-popup>
   </div>
@@ -112,8 +115,8 @@ provide('popup', {
   .task_title{
     display: flex;
     font-weight: bold;
-    // margin: 1.44rem 0 0.67rem 0;
-    margin: 0 0 0.67rem 0;
+    margin: 1.44rem 0 0.67rem 0;
+    // margin: 0.5rem 0 0.67rem 0;
     h3{
       flex: 1;
       font-size: 0.96rem;

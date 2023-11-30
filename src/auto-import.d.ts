@@ -12,6 +12,7 @@ declare global {
   const defineAsyncComponent: typeof import('vue')['defineAsyncComponent']
   const defineComponent: typeof import('vue')['defineComponent']
   const effectScope: typeof import('vue')['effectScope']
+  const getBannerList: typeof import('./api/task')['getBannerList']
   const getCityList: typeof import('./api/task')['getCityList']
   const getCode: typeof import('./api/user')['getCode']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']

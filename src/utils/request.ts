@@ -10,11 +10,11 @@ const service = axios.create({
 
 // 请求拦截器
 service.interceptors.request.use(
-  config => {
+  (config: any) => {
     const token = window.localStorage.getItem('token')
     if (token) {
-      config.params = {
-        'token': token
+      config.headers = {
+        'x-access-token': token
       }
     }
     return config

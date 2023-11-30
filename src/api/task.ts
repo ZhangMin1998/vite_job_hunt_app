@@ -18,3 +18,12 @@ export function getCityList() {
     // params: data
   })
 }
+
+// 获取轮播图
+export function getBannerList(data: any) {
+  return request({
+    url: '/home/banner/list',
+    method: 'get',
+    params: data
+  })
+}
