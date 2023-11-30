@@ -45,13 +45,13 @@ const taskList = reactive([
 const state = reactive({
   citySwitchBool: false
 })
-const closeCitySwitch = (name:string) => {
+const closeCitySwitch = (name:string):void => {
   if (name) {
     store.setCityValue(name)
   }
   state.citySwitchBool = false
 }
-provide('popup',{
+provide('popup', {
   closeCitySwitch
 })
 </script>

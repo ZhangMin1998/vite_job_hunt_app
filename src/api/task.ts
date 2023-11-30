@@ -11,10 +11,10 @@ export function getCode(data: any) {
 
 
 // 获取城市列表
-export function getCityList(data: any) {
+export function getCityList() {
   return request({
     url: '/sys/city/list',
     method: 'get',
-    params: data
+    // params: data
   })
 }

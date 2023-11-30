@@ -11,7 +11,7 @@
     </div>
     <h3>切换城市：</h3>
     <div class="city-switch-text">
-      <span v-for="(item, index) in store.cityList" :key="index" @click="closeCitySwitch(item.name)">{{ item.name }}</span>
+      <span v-for="(item, index) in store.cityList" :key="index" @click="closeCitySwitch((item as any).name)">{{ (item as any).name }}</span>
     </div>
   </div>
 </template>
@@ -22,6 +22,7 @@ import { taskStore } from '@/store/task'
 import { showToast } from 'vant'
 
 const store = taskStore()
+
 const { closeCitySwitch } = inject('popup')
 
 const onClickLeft = () => {
@@ -32,7 +33,7 @@ const queryCityList = async () => {
   if (res) {
     store.setCityList(res)
   } else {
-    showToast(res.msg)
+    showToast((res as any).msg)
   }
 }
 if (!store.cityList.length) queryCityList()
