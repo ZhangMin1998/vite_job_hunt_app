@@ -34,16 +34,16 @@ import { showToast } from 'vant'
 
 const store = taskStore()
 const { closePositionType } = inject('popup')
-
 const state = reactive({
   typeKey: 0
 })
 
+// 返回按钮
 const onClickLeft = () => {
   closePositionType()
 }
-console.log(store.positionList)
 
+// 获取职位列表
 const querypositionList = async () => {
   const res = await getPosiTypeList()
   if (res) {
@@ -54,8 +54,9 @@ const querypositionList = async () => {
 }
 if (!store.positionList.length) querypositionList()
 
+// 切换职位
 const setTypeKey = (key: number) => {
-
+  state.typeKey = key
 }
 </script>
 
@@ -76,7 +77,7 @@ const setTypeKey = (key: number) => {
       font-weight: 300;
       color: #333333;
       text-align: center;
-      &:active{
+      &.active{
         background: #EFEFEF;
       }
     }

@@ -13,7 +13,7 @@
     <div class="task_title">
       <h3>最新任务</h3>
       <div class="task-positon-pop" @click="state.positionTypeBool = true">
-        职位类型
+        {{ state.positionValue ? state.positionValue : '职位类型' }}
         <span></span>
       </div>
       <div class="task-screen-pop">
@@ -53,7 +53,8 @@ const taskList = reactive([
 ])
 const state = reactive({
   citySwitchBool: false,
-  positionTypeBool: false
+  positionTypeBool: false,
+  positionValue: ''
 })
 const closeCitySwitch = (name:string):void => {
   if (name) {
@@ -61,10 +62,10 @@ const closeCitySwitch = (name:string):void => {
   }
   state.citySwitchBool = false
 }
-const closePositionType = ():void => {
-  // if (name) {
-  //   store.setCityValue(name)
-  // }
+const closePositionType = (name:string):void => {
+  if (name) {
+    state.positionValue = name
+  }
   state.positionTypeBool = false
 }
 provide('popup', {
