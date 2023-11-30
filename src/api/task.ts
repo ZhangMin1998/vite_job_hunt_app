@@ -27,3 +27,12 @@ export function getBannerList(data: any) {
     params: data
   })
 }
+
+// 获取职位类型
+export function getPosiTypeList() {
+  return request({
+    url: '/position/positionTypeApi',
+    method: 'get',
+    // params: data
+  })
+}

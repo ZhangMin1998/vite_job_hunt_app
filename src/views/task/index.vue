@@ -12,7 +12,7 @@
     <Banner></Banner>
     <div class="task_title">
       <h3>最新任务</h3>
-      <div class="task-positon-pop">
+      <div class="task-positon-pop" @click="state.positionTypeBool = true">
         职位类型
         <span></span>
       </div>
@@ -29,6 +29,11 @@
     <van-popup v-model:show="state.citySwitchBool" position="left" duration="0.2" :style="{ width: '100%',height: '100%' }">
       <CitySwitch></CitySwitch>
     </van-popup>
+
+    <!--职位类型弹窗-->
+    <van-popup v-model:show="state.positionTypeBool" position="left" duration="0.2" :style="{ width: '100%',height: '100%' }">
+      <PositionType></PositionType>
+    </van-popup>
   </div>
   <FooterTabbar></FooterTabbar>
 </template>
@@ -39,6 +44,7 @@ import FooterTabbar from '@/components/FooterTabbar.vue'
 import TaskList from '@/components/list/TaskList.vue'
 import Banner from '@/views/task/components/Banner.vue'
 import CitySwitch from '@/views/task/components/CitySwitch.vue'
+import PositionType from './components/PositionType.vue'
 import { taskStore } from '@/store/task'
 
 const store = taskStore()
@@ -46,7 +52,8 @@ const taskList = reactive([
   {id:1},{id:2},{id:3},{id:4}
 ])
 const state = reactive({
-  citySwitchBool: false
+  citySwitchBool: false,
+  positionTypeBool: false
 })
 const closeCitySwitch = (name:string):void => {
   if (name) {
@@ -54,8 +61,15 @@ const closeCitySwitch = (name:string):void => {
   }
   state.citySwitchBool = false
 }
+const closePositionType = ():void => {
+  // if (name) {
+  //   store.setCityValue(name)
+  // }
+  state.positionTypeBool = false
+}
 provide('popup', {
-  closeCitySwitch
+  closeCitySwitch,
+  closePositionType
 })
 </script>
 
