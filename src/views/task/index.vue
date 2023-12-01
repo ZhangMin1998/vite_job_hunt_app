@@ -23,7 +23,18 @@
     </div>
 
     <!-- 任务列表 -->
-    <TaskList :taskList="state.taskList"></TaskList>
+    <van-pull-refresh v-model="state.loading" @refresh="onRefresh">
+      <van-list
+        v-model:loading="state.loading"
+        :finished="state.finished"
+        finished-text="没有更多了"
+        offset="10"
+        @load="onLoad"
+      >
+        <TaskList :taskList="state.taskList"></TaskList>
+        <div class="wy-no-data" v-if="!state.loading && state.taskList.length==0">暂无数据</div>
+      </van-list>
+    </van-pull-refresh>
 
     <!--切换城市弹窗-->
     <van-popup v-model:show="state.citySwitchBool" position="left" duration="0.2" :style="{ width: '100%',height: '100%' }">
@@ -68,12 +79,16 @@ const state = reactive({
   serviceMode: '',
   taskCycle: '',
   taskList: [],
-  pageNum: 1,
-  pageSize: 10
+  pageNum: 0,
+  pageSize: 10,
+  loading: false,
+  finished: false
 })
 
 // 查询任务列表
 const queryTaskAllList = async () => {
+  state.loading = true
+  if(state.pageNum === 1) state.taskList = []
   const res = await getTaskAllList({
     "position_name": state.positionValue, 
     "service_mode": state.serviceMode,
@@ -83,24 +98,41 @@ const queryTaskAllList = async () => {
     "city": store.cityValue,
   })
   if (res) {
-    console.log(res)
+    console.log('000000000')
     
-    state.taskList = (res as any).records
+    state.taskList = state.taskList.concat((res as any).records)
+    state.loading = false
+    if (state.taskList.length >= (res as any).total) {
+      state.finished = true
+    }else{
+      state.finished = false
+    }
   } else {
     showToast((res as any).msg)
+    state.loading = false
   }
 }
-queryTaskAllList()
+
+const onLoad = () => {
+  state.pageNum = state.pageNum + 1
+  queryTaskAllList()
+}
+const onRefresh = () => {
+  state.pageNum = 1
+  queryTaskAllList()
+}
 
 const closeCitySwitch = (name:string):void => {
   if (name) {
     store.setCityValue(name)
+    onRefresh()
   }
   state.citySwitchBool = false
 }
 const closePositionType = (name:string):void => {
   if (name) {
     state.positionValue = name
+    onRefresh()
   }
   state.positionTypeBool = false
 }
@@ -108,6 +140,7 @@ const closeScreen = (obj:object):void => {
   if (obj) {
     state.serviceMode = (obj as any).mode
     state.taskCycle = (obj as any).cycle
+    onRefresh()
   }
   state.screenBool = false
 }
@@ -124,7 +157,7 @@ provide('popup', {
   background: #f9f9f9;
   padding: 0 0.59rem 3rem;
   min-height: calc(100vh - 3rem);
-  overflow: auto;
+  overflow: hidden;
   .task_top{
     display: flex;
     align-items: center;
