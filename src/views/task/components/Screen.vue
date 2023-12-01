@@ -33,7 +33,7 @@
     </div>
   </div>
   <div class="screen_footer">
-    <button class="screen_clear">清除</button>
+    <button class="screen_clear" @click="clearScreen">清除</button>
     <van-button type="primary" block @click="closeScreen(state)">确定</van-button>
   </div>
 </template>
@@ -71,6 +71,11 @@ const modeChange = (item:string) => {
 }
 const cycleChange = (item:string) => {
   state.cycle = item
+}
+// 清除
+const clearScreen = () => {
+  state.mode = ''
+  state.cycle = ''
 }
 
 </script>

@@ -63,7 +63,8 @@ const state = reactive({
   positionTypeBool: false,
   positionValue: '',
   screenBool: false,
-  serviceMode: ''
+  serviceMode: '',
+  taskCycle: ''
 })
 const closeCitySwitch = (name:string):void => {
   if (name) {
@@ -79,7 +80,8 @@ const closePositionType = (name:string):void => {
 }
 const closeScreen = (obj:object):void => {
   if (obj) {
-    state.serviceMode = obj.mode
+    state.serviceMode = (obj as any).mode
+    state.taskCycle = (obj as any).cycle
   }
   state.screenBool = false
 }
