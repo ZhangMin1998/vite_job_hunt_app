@@ -5,7 +5,7 @@ export const taskStore = defineStore({
   state: () =>{
     return {
       cityList: [], // 城市列表
-      cityValue: localStorage.getItem('city') ||  '深圳', // 当前选中城市
+      cityValue: localStorage.getItem('city') ||  '北京', // 当前选中城市
       bannerList: [], // 轮播图
       positionList: [], // 职位类型
       screenList: {}, // 筛选数据

@@ -38,10 +38,19 @@ export function getPosiTypeList() {
 }
 
 // 获取筛选列表
-export function getTaskAllList() {
+export function getScreenList() {
   return request({
     url: '/task/getTaskAll',
     method: 'get',
     // params: data
+  })
+}
+
+// 获取任务列表
+export function getTaskAllList(data: any) {
+  return request({
+    url: '/task/taskAllList',
+    method: 'get',
+    params: data
   })
 }

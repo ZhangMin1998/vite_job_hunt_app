@@ -39,7 +39,7 @@
 </template>
 
 <script setup lang="ts">
-import { getTaskAllList } from '@/api/task'
+import { getScreenList } from '@/api/task'
 import { taskStore } from '@/store/task'
 import { showToast } from 'vant'
 
@@ -57,7 +57,7 @@ const onClickLeft = () => {
 
 // 获取职位列表
 const queryScreenList = async () => {
-  const res = await getTaskAllList()
+  const res = await getScreenList()
   if (res) {
     store.setScreenList(res.data)
   } else {

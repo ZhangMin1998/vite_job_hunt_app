@@ -23,7 +23,7 @@
     </div>
 
     <!-- 任务列表 -->
-    <TaskList :taskList="taskList"></TaskList>
+    <TaskList :taskList="state.taskList"></TaskList>
 
     <!--切换城市弹窗-->
     <van-popup v-model:show="state.citySwitchBool" position="left" duration="0.2" :style="{ width: '100%',height: '100%' }">
@@ -52,20 +52,46 @@ import Banner from '@/views/task/components/Banner.vue'
 import CitySwitch from '@/views/task/components/CitySwitch.vue'
 import PositionType from './components/PositionType.vue'
 import Screen from './components/Screen.vue'
+import { showToast } from 'vant'
 import { taskStore } from '@/store/task'
+import { getTaskAllList } from '@/api/task'
 
 const store = taskStore()
-const taskList = reactive([
-  {id:1},{id:2},{id:3},{id:4}
-])
+// const taskList = reactive([
+//   {id:1},{id:2},{id:3},{id:4}
+// ])
 const state = reactive({
   citySwitchBool: false,
   positionTypeBool: false,
   positionValue: '',
   screenBool: false,
   serviceMode: '',
-  taskCycle: ''
+  taskCycle: '',
+  taskList: [],
+  pageNum: 1,
+  pageSize: 10
 })
+
+// 查询任务列表
+const queryTaskAllList = async () => {
+  const res = await getTaskAllList({
+    "position_name": state.positionValue, 
+    "service_mode": state.serviceMode,
+    "task_cycle": state.taskCycle, 
+    "pageNum": state.pageNum,
+    "pageSize": state.pageSize,
+    "city": store.cityValue,
+  })
+  if (res) {
+    console.log(res)
+    
+    state.taskList = (res as any).records
+  } else {
+    showToast((res as any).msg)
+  }
+}
+queryTaskAllList()
+
 const closeCitySwitch = (name:string):void => {
   if (name) {
     store.setCityValue(name)
@@ -85,6 +111,7 @@ const closeScreen = (obj:object):void => {
   }
   state.screenBool = false
 }
+
 provide('popup', {
   closeCitySwitch,
   closePositionType,
@@ -97,6 +124,7 @@ provide('popup', {
   background: #f9f9f9;
   padding: 0 0.59rem 3rem;
   min-height: calc(100vh - 3rem);
+  overflow: auto;
   .task_top{
     display: flex;
     align-items: center;
@@ -173,5 +201,12 @@ provide('popup', {
       }
     }
   }
+  // &::-webkit-scrollbar {
+  //   display: none;
+  // }
 }
+.task_page::-webkit-scrollbar {
+    display: none;
+    width: 0;
+  }
 </style>

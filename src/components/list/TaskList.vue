@@ -2,32 +2,31 @@
   <div class="task_item" v-for="(item, index) in taskList" :key="index"  @click="gotoDetail((item as any).task_id)">
    <!-- <div class="task_item">  -->
     <div class="task_item_top">
-      <h3>H5开发</h3>
-      <span>紧急</span>
+      <h3>{{ (item as any).task_name }}</h3>
+      <span v-if="(item as any).is_emergency == 1">紧急</span>
     </div>
     <dl>
       <dt>
         <h5>任务预算</h5>
-        <strong>￥1000</strong>
+        <strong>￥{{(item as any).task_budget}}</strong>
       </dt>
       <dt>
         <h5>任务周期</h5>
-        <strong>90天</strong>
+        <strong>{{(item as any).task_cycle}}天</strong>
       </dt>
       <dt>
         <h5>服务方式</h5>
-        <strong>外包驻场</strong>
+        <strong>{{(item as any).service_mode}}</strong>
       </dt>
     </dl>
     <p>
-      任务要求：混合开发微信小程序，与后端对接接口，有3年以上web前端开发经验，
-      熟悉Vue、React等前端主流框架，了解一门后端语言优先。
+      任务要求：{{(item as any).task_ask}}
     </p>
     <div class="task_item_bottom">
-      <label>深圳中软国际科技服务有限公司</label>
+      <label>{{(item as any).company_name}}</label>
       <span>
         <van-icon name="location-o" />
-        深圳
+        {{(item as any).city}}
       </span>
     </div>
   </div>
@@ -36,12 +35,13 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
 
-defineProps({
+const props = defineProps({
   taskList: {
     type: Array,
     default: () => []
   }
 })
+console.log(props.taskList)
 
 const router = useRouter()
 const gotoDetail = (id: number) => {

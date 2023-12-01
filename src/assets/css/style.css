@@ -20,6 +20,10 @@ body {
   background: #ffffff;
   font-size: 0.64rem;
   font-family: 'Microsoft YaHei';
+  &::-webkit-scrollbar {
+    display: none;
+    width: 0;
+  }
 }
 textarea{
   line-height: 1.2rem !important;
