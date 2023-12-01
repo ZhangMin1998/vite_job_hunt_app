@@ -36,3 +36,12 @@ export function getPosiTypeList() {
     // params: data
   })
 }
+
+// 获取筛选列表
+export function getTaskAllList() {
+  return request({
+    url: '/task/getTaskAll',
+    method: 'get',
+    // params: data
+  })
+}

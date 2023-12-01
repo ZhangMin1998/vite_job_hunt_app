@@ -16,7 +16,7 @@
         {{ state.positionValue ? state.positionValue : '职位类型' }}
         <span></span>
       </div>
-      <div class="task-screen-pop">
+      <div class="task-screen-pop" @click="state.screenBool = true">
         筛选
         <span></span>
       </div>
@@ -34,7 +34,13 @@
     <van-popup v-model:show="state.positionTypeBool" position="left" duration="0.2" :style="{ width: '100%',height: '100%' }">
       <PositionType></PositionType>
     </van-popup>
+
+    <!--筛选弹窗-->
+    <van-popup v-model:show="state.screenBool" position="left" duration="0" :style="{ width: '100%',height: '100%' }">
+      <Screen></Screen>
+    </van-popup>
   </div>
+  <!-- 底部导航栏 -->
   <FooterTabbar></FooterTabbar>
 </template>
 
@@ -45,6 +51,7 @@ import TaskList from '@/components/list/TaskList.vue'
 import Banner from '@/views/task/components/Banner.vue'
 import CitySwitch from '@/views/task/components/CitySwitch.vue'
 import PositionType from './components/PositionType.vue'
+import Screen from './components/Screen.vue'
 import { taskStore } from '@/store/task'
 
 const store = taskStore()
@@ -54,7 +61,9 @@ const taskList = reactive([
 const state = reactive({
   citySwitchBool: false,
   positionTypeBool: false,
-  positionValue: ''
+  positionValue: '',
+  screenBool: false,
+  serviceMode: ''
 })
 const closeCitySwitch = (name:string):void => {
   if (name) {
@@ -68,9 +77,16 @@ const closePositionType = (name:string):void => {
   }
   state.positionTypeBool = false
 }
+const closeScreen = (obj:object):void => {
+  if (obj) {
+    state.serviceMode = obj.mode
+  }
+  state.screenBool = false
+}
 provide('popup', {
   closeCitySwitch,
-  closePositionType
+  closePositionType,
+  closeScreen
 })
 </script>
 

@@ -8,6 +8,7 @@ export const taskStore = defineStore({
       cityValue: localStorage.getItem('city') ||  '深圳', // 当前选中城市
       bannerList: [], // 轮播图
       positionList: [], // 职位类型
+      screenList: {}, // 筛选数据
     }
   },
   actions: {
@@ -26,6 +27,10 @@ export const taskStore = defineStore({
     // 保存职位类型数据
     setPositionList(data: any) {
       this.positionList = data
+    },
+    // 保存筛选列表
+    setScreenList(data: any) {
+      this.screenList = data
     }
   }
 })
