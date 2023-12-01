@@ -157,7 +157,7 @@ provide('popup', {
   background: #f9f9f9;
   padding: 0 0.59rem 3rem;
   min-height: calc(100vh - 3rem);
-  overflow: hidden;
+  // overflow: hidden; // 解决vant-list的load一直执行的问题
   .task_top{
     display: flex;
     align-items: center;
