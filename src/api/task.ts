@@ -54,3 +54,12 @@ export function getTaskAllList(data: any) {
     params: data
   })
 }
+
+// 获取任务详情
+export function getTaskDetail(data: any) {
+  return request({
+    url: '/task/getTaskDetails',
+    method: 'get',
+    params: data
+  })
+}

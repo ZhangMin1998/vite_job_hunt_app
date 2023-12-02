@@ -21,6 +21,7 @@ declare global {
   const getPosiTypeList: typeof import('./api/task')['getPosiTypeList']
   const getScreenList: typeof import('./api/task')['getScreenList']
   const getTaskAllList: typeof import('./api/task')['getTaskAllList']
+  const getTaskDetail: typeof import('./api/task')['getTaskDetail']
   const getTaskList: typeof import('./api/task')['getTaskList']
   const h: typeof import('vue')['h']
   const inject: typeof import('vue')['inject']
