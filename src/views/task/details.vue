@@ -6,7 +6,7 @@
   />
   <TaskDetail :item="state.item" v-if="state.item"></TaskDetail>
   <div class="task_detail_footer">
-    <van-action-bar-icon icon="star-o" text="收藏" @click="setTaskCollection" />
+    <van-action-bar-icon icon="star-o" text="收藏" :color="state.status === 1 ? '#FE8F27' : ''" @click="setTaskCollection" />
     <van-button type="primary" block @click="gotoMessage">立即沟通</van-button>
   </div>
 </template>
@@ -14,11 +14,11 @@
 <script setup lang="ts">
 import TaskDetail from './components/TaskDetail.vue'
 import { showToast } from 'vant'
-import { getTaskDetail } from '@/api/task'
+import { getTaskDetail, setTaskCollectoin } from '@/api/task'
 
 const router = useRouter()
 const state = reactive({
-  item: null,
+  item: [],
   status: 0,
   loading: false
 })
@@ -42,10 +42,18 @@ const queryTaskDetail = async () => {
 queryTaskDetail()
 
 const gotoMessage = () => {
-
+  router.push('/message/talk/'+ state.item.task_id + '/'+ state.item.user_id)
 }
-const setTaskCollection = () => {
-  
+const setTaskCollection = async () => {
+  state.loading = true
+  const res = await setTaskCollectoin({
+    task_id: taskId
+  })
+  if ((res as any)) {
+    state.status = (res as any).data.status
+  }
+  state.loading = false
+  showToast((res as any).msg)
 }
 </script>
 

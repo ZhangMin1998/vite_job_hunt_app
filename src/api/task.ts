@@ -63,3 +63,12 @@ export function getTaskDetail(data: any) {
     params: data
   })
 }
+
+// 任务详情收藏
+export function setTaskCollectoin(data: any) {
+  return request({
+    url: '/course/TaskCollection',
+    method: 'post',
+    data
+  })
+}
