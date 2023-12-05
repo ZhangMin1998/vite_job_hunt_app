@@ -26,7 +26,7 @@
       <label>{{(item as any).company_name}}</label>
       <span>
         <van-icon name="location-o" />
-        {{(item as any).city}}
+        {{(item as any).city || '香港'}}
       </span>
     </div>
   </div>

@@ -1,5 +1,5 @@
 <template>
-  <div class="search_page">
+  <div :class="state.searchFlag ? 'search_page' : ''">
     <van-nav-bar
       title="搜索"
       left-arrow
@@ -13,7 +13,7 @@
         @search="onSearch"
         @cancel="onCancel"
       />
-      <div class="search_item">
+      <div class="search_item" v-if="!state.searchFlag">
         <h3>
           搜索历史
           <van-icon name="delete-o" @click="clearHistory" />
@@ -25,13 +25,23 @@
         </dl>
         <h3>热门搜索</h3>
         <dl>
-          <dt v-for="(item, index) in store.hotSearchList" :key="index" @click="gotoSearch((item as any))">
+          <dt v-for="(item, index) in store.hotSearchList" :key="index" @click="gotoSearch((item as any).title)">
             {{ (item as any).title }}
           </dt>
         </dl>
       </div>
-      <div class="search_list">
-        <TaskList :taskList="state.taskList"></TaskList>
+      <div class="search_list" v-show="state.searchFlag">
+        <van-pull-refresh v-model="state.loading" @refresh="onRefresh">
+          <van-list
+            v-model:loading="state.loading"
+            :finished="state.finished"
+            finished-text=""
+            @load="onLoad"
+          >
+            <TaskList :taskList="state.taskList"></TaskList>
+            <div class="wy-no-data" v-if="!state.loading && !state.taskList.length">暂无数据</div>
+          </van-list>
+        </van-pull-refresh>
       </div>
     </div>
   </div>
@@ -60,13 +70,16 @@ const onClickLeft = () => history.back()
 
 const onSearch = (value:any) => {
   if (!value) return
+  state.searchFlag = true
   if (!state.searchHistory.includes(value)) {
     state.searchHistory.push(value)
     localStorage.setItem('searchHistory', state.searchHistory as any)
   }
+  queryTaskAllList()
 }
 const onCancel = () => {
-
+  state.searchFlag = false
+  state.value = ''
 }
 const clearHistory = () => {
   state.searchHistory = []
@@ -85,21 +98,39 @@ const queryHotSearch = async () => {
   }
 }
 if (!store.hotSearchList.length) queryHotSearch()
-// const queryTaskDetail = async () => {
-//   state.loading = true
-//   const res = await getTaskDetail({
-//     task_id: taskId
-//   })
-//   if (res) {
-//     state.item = (res as any).records[0]
-//     state.status = (res as any).records[0].status
-//     state.loading = false
-//   } else {
-//     showToast((res as any).msg)
-//     state.loading = false
-//   }
-// }
-// queryTaskDetail()
+
+// 查询任务列表
+const queryTaskAllList = async () => {
+  state.loading = true
+  if(state.pageNum === 1) state.taskList = []
+  const res = await getTaskAllList({
+    "position_name": state.value, 
+    "pageNum": state.pageNum,
+    "pageSize": state.pageSize
+  })
+  if (res) {
+    state.taskList = state.taskList.concat((res as any).records)
+    state.loading = false
+    if (state.taskList.length >= (res as any).total) {
+      state.finished = true
+    }else{
+      state.finished = false
+    }
+  } else {
+    showToast((res as any).msg)
+    state.loading = false
+  }
+}
+queryTaskAllList()
+
+const onLoad = () => {
+  state.pageNum = state.pageNum + 1
+  queryTaskAllList()
+}
+const onRefresh = () => {
+  state.pageNum = 1
+  queryTaskAllList()
+}
 
 // const gotoMessage = () => {
 //   router.push('/message/talk/'+ state.item.task_id + '/'+ state.item.user_id)
@@ -108,45 +139,42 @@ if (!store.hotSearchList.length) queryHotSearch()
 
 <style lang="less" scoped>
 .search_page{
-  // background: #F9F9F9;
+  background: #F9F9F9;
   height: 100%;
   min-height: 100vh;
-  .van-nav-bar{
-    background: none;
-  }
-  .search_cont{
-    padding:0 0.64rem;
-    .search_item{
-      h3{
-        display: flex;
-        font-size: 0.8rem;
-        line-height: 0.8rem;
-        font-weight: 500;
-        color: #000;
-        margin: 0.85rem 0 0.85rem;
-        i{
-          flex: 1;
-          text-align: right;
-          font-size: 0.9rem;
-        }
-      }
-      dl{
-        dt{
-          display: inline-block;
-          background: #F5F5F5;
-          border-radius: 0.16rem;
-          padding: 0.45rem;
-          font-size: 0.64rem;
-          line-height: 0.64rem;
-          font-weight: 400;
-          color: #333333;
-          margin-right: 0.51rem;
-          margin-bottom: 0.53rem;
-        }
+}
+.van-nav-bar{
+  background: none;
+}
+.search_cont{
+  padding:0 0.64rem;
+  .search_item{
+    h3{
+      display: flex;
+      font-size: 0.8rem;
+      line-height: 0.8rem;
+      font-weight: 500;
+      color: #000;
+      margin: 0.85rem 0 0.85rem;
+      i{
+        flex: 1;
+        text-align: right;
+        font-size: 0.9rem;
       }
     }
-    .search_list{
-
+    dl{
+      dt{
+        display: inline-block;
+        background: #F5F5F5;
+        border-radius: 0.16rem;
+        padding: 0.45rem;
+        font-size: 0.64rem;
+        line-height: 0.64rem;
+        font-weight: 400;
+        color: #333333;
+        margin-right: 0.51rem;
+        margin-bottom: 0.53rem;
+      }
     }
   }
 }
