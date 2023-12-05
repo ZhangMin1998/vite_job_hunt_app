@@ -28,9 +28,6 @@
           <dt>
             前端工程师
           </dt>
-          <dt>
-            前端工程师
-          </dt>
         </dl>
       </div>
       <div class="search_list">
@@ -45,30 +42,37 @@ import { showToast } from 'vant'
 import { getTaskDetail, setTaskCollectoin } from '@/api/task'
 import TaskList from '@/components/list/TaskList.vue';
 
+const his = localStorage.getItem('searchHistory')
 const state = reactive({
   value: '',
   loading: false,
   finished: false,
   searchFlag: false,
   taskList: [],
-  searchHistory: [],
+  searchHistory: his ? his.split(',') : [],
   pageNum: 1,
   pageSize: 10,
 })
 
 const onClickLeft = () => history.back()
 
-const onSearch =() => {
-
+const onSearch = (value:any) => {
+  if (!value) return
+  if (!state.searchHistory.includes(value)) {
+    state.searchHistory.push(value)
+    localStorage.setItem('searchHistory', state.searchHistory)
+  }
 }
 const onCancel = () => {
 
 }
 const clearHistory = () => {
-
+  state.searchHistory = []
+  localStorage.removeItem('searchHistory')
 }
-const gotoSearch = (item) => {
-
+const gotoSearch = (item:any) => {
+  state.value = item
+  onSearch(item)
 }
 // const queryTaskDetail = async () => {
 //   state.loading = true
