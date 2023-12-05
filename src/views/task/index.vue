@@ -6,7 +6,7 @@
         <strong>{{ store.cityValue }}</strong>
         <span></span>
       </div>
-      <input type="text" readonly placeholder="请输入想要搜素的内容">
+      <input type="text" readonly placeholder="请输入想要搜素的内容" @click="gotoSearch">
       <router-link to="/message/systemList" class="task-icon-message"></router-link>
     </div>
     <Banner></Banner>
@@ -67,6 +67,7 @@ import { showToast } from 'vant'
 import { taskStore } from '@/store/task'
 import { getTaskAllList } from '@/api/task'
 
+const router = useRouter()
 const store = taskStore()
 // const taskList = reactive([
 //   {id:1},{id:2},{id:3},{id:4}
@@ -84,6 +85,10 @@ const state = reactive({
   loading: false,
   finished: false
 })
+
+const gotoSearch = () => {
+  router.push('/task/search')
+}
 
 // 查询任务列表
 const queryTaskAllList = async () => {

@@ -17,7 +17,8 @@ import {
   SwipeItem,
   PullRefresh,
   List,
-  ActionBarIcon
+  ActionBarIcon,
+  Search
 } from 'vant'
 import './utils/rem'
 
@@ -35,6 +36,7 @@ app.use(SwipeItem)
 app.use(PullRefresh)
 app.use(List)
 app.use(ActionBarIcon)
+app.use(Search)
 
 app.use(store)
 app.use(router)
