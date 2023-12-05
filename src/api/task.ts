@@ -72,3 +72,12 @@ export function setTaskCollectoin(data: any) {
     data
   })
 }
+
+// 获取热门搜索
+export function getHotSearch(data: any) {
+  return request({
+    url: '/position/public/getHotSeach',
+    method: 'get',
+    params: data
+  })
+}

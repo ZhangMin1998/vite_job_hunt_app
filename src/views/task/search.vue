@@ -25,8 +25,8 @@
         </dl>
         <h3>热门搜索</h3>
         <dl>
-          <dt>
-            前端工程师
+          <dt v-for="(item, index) in store.hotSearchList" :key="index" @click="gotoSearch((item as any))">
+            {{ (item as any).title }}
           </dt>
         </dl>
       </div>
@@ -39,9 +39,11 @@
 
 <script setup lang="ts">
 import { showToast } from 'vant'
-import { getTaskDetail, setTaskCollectoin } from '@/api/task'
-import TaskList from '@/components/list/TaskList.vue';
+import { getHotSearch } from '@/api/task'
+import TaskList from '@/components/list/TaskList.vue'
+import { taskStore } from '@/store/task'
 
+const store = taskStore()
 const his = localStorage.getItem('searchHistory')
 const state = reactive({
   value: '',
@@ -60,7 +62,7 @@ const onSearch = (value:any) => {
   if (!value) return
   if (!state.searchHistory.includes(value)) {
     state.searchHistory.push(value)
-    localStorage.setItem('searchHistory', state.searchHistory)
+    localStorage.setItem('searchHistory', state.searchHistory as any)
   }
 }
 const onCancel = () => {
@@ -74,6 +76,15 @@ const gotoSearch = (item:any) => {
   state.value = item
   onSearch(item)
 }
+const queryHotSearch = async () => {
+  const res = await getHotSearch({ type: 1 })
+  if (res) {
+    store.setHotSearchList(res.data)
+  } else {
+    showToast((res as any).msg)
+  }
+}
+if (!store.hotSearchList.length) queryHotSearch()
 // const queryTaskDetail = async () => {
 //   state.loading = true
 //   const res = await getTaskDetail({
