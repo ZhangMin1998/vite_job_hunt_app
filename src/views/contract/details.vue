@@ -5,8 +5,13 @@
     @click-left="onClickLeft"
   />
   <dl v-if="state.item">
-    <dd></dd>
+    <dd>
       <img :src="state.item.logo" />
+      <div>
+        <h5>{{state.item.company_name}}</h5>
+        <p>{{state.item.create_user_name}}</p>
+      </div>
+      <!-- <img :src="state.item.logo" />
       <div>
         <h5>{{state.item.user_name}}</h5>
         <p>
@@ -16,7 +21,7 @@
           {{state.item.highest_education}} ｜
           {{state.item.age}}
         </p>
-      </div>
+      </div> -->
     </dd>
     <dt>
       <label>合约状态</label>
@@ -68,6 +73,7 @@
     <button class="confirm_btn" v-if="state.item.is_contract_type===2" v-debounce="confirmChange">确认签约</button>
     <button class="confirm_btn" @click="gotoProgress" v-if="state.item.is_contract_type!=1 && state.item.is_contract_type!=2">合约进度</button>
   </div>
+  <van-loading v-if="!state.item">加载中...</van-loading>
 </template>
 
 <script setup lang="ts">
@@ -83,6 +89,9 @@ const state = reactive({
 const contractId = router.currentRoute.value.params.id
 
 const onClickLeft = () => history.back()
+const gotoProgress = () => {
+  router.push('/contract/progress/'+ state.item.contract_id)
+}
 const queryContractDetail = async () => {
   state.loading = true
   const res = await getContractDetail({
@@ -90,11 +99,10 @@ const queryContractDetail = async () => {
   })
   if (res) {
     state.item = (res as any).records[0]
-    state.loading = false
   } else {
     showToast((res as any).msg)
-    state.loading = false
   }
+  state.loading = false
 }
 queryContractDetail()
 </script>
@@ -155,11 +163,11 @@ dl{
     font-size: 0.8rem;
     text-align: center;
     margin-right: 0.64rem;
-    .refuse_btn{
+    &.refuse_btn{
       color: #FF9415;
       background: #ffffff;
     }
-    .confirm_btn{
+    &.confirm_btn{
       color: #ffffff;
       background: #FF9415;
     }
