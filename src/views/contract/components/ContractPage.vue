@@ -49,8 +49,9 @@ const queryContractAllList = async () => {
     // curr_identity: 2
   })
   if (res) {
+    state.list = []
     state.list = (res as any).records
-    if (!(res as any).records.length) {
+    if (!(res as any).records.length && Math.random() > 0.5) {
       state.list = [
         {
           "contract_id": 80,
