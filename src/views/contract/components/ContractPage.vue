@@ -10,9 +10,14 @@
       <i></i>
     </span>
   </div>
+  <ContractList :contractList="state.list"></ContractList>
 </template>
 
 <script setup lang="ts">
+import { getContractAllList } from '@/api/contract'
+import ContractList from '@/components/list/ContractList.vue'
+import { showToast } from 'vant'
+
 const tabs = [
   {
     type: 2,
@@ -32,13 +37,64 @@ const tabs = [
   }
 ]
 const state = reactive({
-  type: 0,
+  type: tabs[0].type,
   loading: false,
+  list: []
 })
+
+const queryContractAllList = async () => {
+  state.loading = true
+  const res = await getContractAllList({
+    is_contract_type: state.type,
+    // curr_identity: 2
+  })
+  if (res) {
+    state.list = (res as any).records
+    if (!(res as any).records.length) {
+      state.list = [
+        {
+          "contract_id": 80,
+          "contract_name": '一步招聘App项目开发',
+          "contract_type": '技术服务',
+          "phone": '13278962216',
+          "task_salary": 100000,
+          "start_cycle_time": '2023-12-07',
+          "end_cycle_time": '2026-12-07',
+          "settle_salary": 0,
+          "signing_time": null,
+          "is_contract_type": 2,
+          "is_contract_type_text": '履约中',
+          "user_id": 25,
+          "check_out": '按任务结算',
+          "task_ask": '三年周期开发android和ios端一步招聘App',
+          "create_user_id": 53,
+          "user_name":'张敏',
+          "accounts": '13278962216',
+          "sex": 1,
+          "company_name": '华为技术有限公司',
+          "contract_I_state": -1,
+          "contract_I_stage": null,
+          "contract_II_state": -1,
+          "contract_II_stage": null,
+          "contract_III_state": null,
+          "contract_III_stage": -1,
+          "contract_IIII_state": null,
+          "contract_IIII_stage": null,
+        }
+      ]
+    }
+    
+  } else {
+    showToast((res as any).msg)
+  }
+  state.loading = false
+}
+queryContractAllList()
 
 const setTabList = (type:any) => {
   if (type === state.type) return
   state.type = type
+  queryContractAllList()
 }
 </script>
 

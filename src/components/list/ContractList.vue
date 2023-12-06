@@ -1,40 +1,38 @@
 <template>
   <dl class="contract_item" v-for="(item, index) in contractList" :key="index"  @click="gotoDetail((item as any).contract_id)">
     <dd>
-      <h3>Web前端开发工程师</h3>
-      <span>履约中</span>
+      <h3>{{item.contract_name}}</h3>
+      <span>{{item.is_contract_type_text}}</span>
       <van-icon name="arrow" />
     </dd>
     <dt>
       <label>公司名称</label>
-      <span>华为技术有限公司</span>
+      <span>{{item.company_name}}</span>
     </dt>
     <dt>
       <label>合约类型</label>
-      <span>技术服务</span>
+      <span>{{item.contract_type}}</span>
     </dt>
     <dt>
       <label>合约周期</label>
-      <span>3年</span>
+      <span>{{item.start_cycle_time}}~{{item.end_cycle_time}}</span>
     </dt>
     <dt>
       <label>签约时间</label>
-      <span>2023-11-29</span>
+      <span>{{item.signing_time}}</span>
     </dt>
     <dt>
       <label>合约进度</label>
       <span></span>
     </dt>
-    <dt class="contract_progress">
-      <i class="gerrn"></i>
-      <i class="green"></i>
-      <i class="orange"></i>
-      <i class="red"></i>
+    <dt>
+      <ProgressBar :item="(item as any)"></ProgressBar>
     </dt>
   </dl>
 </template>
 
 <script setup lang="ts">
+import ProgressBar from '../ProgressBar.vue'
 import { useRouter } from 'vue-router'
 
 defineProps({
@@ -90,24 +88,24 @@ const gotoDetail = (id: number) => {
       margin-bottom: 0;
     }
   }
-  .contract_progress{
-    display: flex;
-    height: 0.53rem;
-    width: 100%;
-    i{
-      flex: 1;
-      background: #f3f3f3;
-      margin: 0 1px;
-      .green{
-        background: #50D400;
-      }
-      .orange{
-        background: #fe9215;
-      }
-      .red{
-        background: #ff4800;
-      }
-    }
-  }
+  // .contract_progress{
+  //   display: flex;
+  //   height: 0.53rem;
+  //   width: 100%;
+  //   i{
+  //     flex: 1;
+  //     background: #f3f3f3;
+  //     margin: 0 1px;
+  //     .green{
+  //       background: #50D400;
+  //     }
+  //     .orange{
+  //       background: #fe9215;
+  //     }
+  //     .red{
+  //       background: #ff4800;
+  //     }
+  //   }
+  // }
 }
 </style>
