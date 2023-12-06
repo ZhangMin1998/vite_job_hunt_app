@@ -1,37 +1,34 @@
 <template>
-  <div v-if="contractList.length">
-    <dl class="contract_item" v-for="(item, index) in contractList" :key="index"  @click="gotoDetail((item as any).contract_id)">
-      <dd>
-        <h3>{{item.contract_name}}</h3>
-        <span>{{item.is_contract_type_text}}</span>
-        <van-icon name="arrow" />
-      </dd>
-      <dt>
-        <label>公司名称</label>
-        <span>{{item.company_name}}</span>
-      </dt>
-      <dt>
-        <label>合约类型</label>
-        <span>{{item.contract_type}}</span>
-      </dt>
-      <dt>
-        <label>合约周期</label>
-        <span>{{item.start_cycle_time}}~{{item.end_cycle_time}}</span>
-      </dt>
-      <dt>
-        <label>签约时间</label>
-        <span>{{item.signing_time}}</span>
-      </dt>
-      <dt>
-        <label>合约进度</label>
-        <span></span>
-      </dt>
-      <dt>
-        <ProgressBar :item="(item as any)"></ProgressBar>
-      </dt>
-    </dl>
-  </div>
-  <div class="wy-no-data" v-else>暂无数据</div>
+  <dl class="contract_item" v-for="(item, index) in contractList" :key="index"  @click="gotoDetail((item as any).contract_id)">
+    <dd>
+      <h3>{{item.contract_name}}</h3>
+      <span>{{item.is_contract_type_text}}</span>
+      <van-icon name="arrow" />
+    </dd>
+    <dt>
+      <label>公司名称</label>
+      <span>{{item.company_name}}</span>
+    </dt>
+    <dt>
+      <label>合约类型</label>
+      <span>{{item.contract_type}}</span>
+    </dt>
+    <dt>
+      <label>合约周期</label>
+      <span>{{item.start_cycle_time}}~{{item.end_cycle_time}}</span>
+    </dt>
+    <dt>
+      <label>签约时间</label>
+      <span>{{item.signing_time}}</span>
+    </dt>
+    <dt>
+      <label>合约进度</label>
+      <span></span>
+    </dt>
+    <dt>
+      <ProgressBar :item="(item as any)"></ProgressBar>
+    </dt>
+  </dl>
 </template>
 
 <script setup lang="ts">

@@ -10,7 +10,11 @@
       <i></i>
     </span>
   </div>
-  <ContractList :contractList="state.list"></ContractList>
+  <van-pull-refresh v-model="state.loading" @refresh="queryContractAllList">
+    <ContractList :contractList="state.list"></ContractList>
+    <van-loading v-if="state.acitveIndex === 0 && state.loading">加载中...</van-loading>
+    <div class="wy-no-data" v-if="!state.loading && state.list.length==0">暂无数据</div>
+  </van-pull-refresh>
 </template>
 
 <script setup lang="ts">
@@ -39,7 +43,8 @@ const tabs = [
 const state = reactive({
   type: tabs[0].type,
   loading: false,
-  list: []
+  list: [],
+  acitveIndex: 0
 })
 
 const queryContractAllList = async () => {
@@ -89,6 +94,7 @@ const queryContractAllList = async () => {
     showToast((res as any).msg)
   }
   state.loading = false
+  state.acitveIndex++
 }
 queryContractAllList()
 
@@ -100,6 +106,14 @@ const setTabList = (type:any) => {
 </script>
 
 <style lang="less" scoped>
+.van-pull-refresh{
+  height: calc(100vh - 46px - 5rem);
+  overflow: auto;
+}
+:deep(.van-loading){
+  text-align: center;
+  margin-top: 1rem;
+}
 .contract_tab{
   display: flex;
   span{
