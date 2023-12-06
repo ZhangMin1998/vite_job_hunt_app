@@ -10,10 +10,10 @@ export function getCode(data: any) {
 }
 
 
-// 获取协议文件
-export function getPolicy(data: any) {
+// 获取合约列表
+export function getContractAllList(data: any) {
   return request({
-    url: '/policy_protocol/list',
+    url: '/task/myContractAllList',
     method: 'get',
     params: data
   })

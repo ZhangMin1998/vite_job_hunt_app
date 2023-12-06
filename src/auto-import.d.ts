@@ -15,6 +15,7 @@ declare global {
   const getBannerList: typeof import('./api/task')['getBannerList']
   const getCityList: typeof import('./api/task')['getCityList']
   const getCode: typeof import('./api/user')['getCode']
+  const getContractAllList: typeof import('./api/contract')['getContractAllList']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
   const getHotSearch: typeof import('./api/task')['getHotSearch']
