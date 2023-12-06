@@ -35,7 +35,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/contract/index.vue')
   },
   {
-    path: '/contract/progress',
+    path: '/contract/progress/:id',
     component: () => import('@/views/contract/progress.vue')
   },
   {

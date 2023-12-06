@@ -1,9 +1,9 @@
 <template>
   <div class="contract_progress">
-    <i :class="contractState(item.contract_I_state)"></i>
-    <i :class="contractState(item.contract_II_state)"></i>
-    <i :class="contractState(item.contract_III_state)"></i>
-    <i :class="contractState(item.contract_IIII_state)"></i>
+    <i :class="contractState((item as any).contract_I_state)"></i>
+    <i :class="contractState((item as any).contract_II_state)"></i>
+    <i :class="contractState((item as any).contract_III_state)"></i>
+    <i :class="contractState((item as any).contract_IIII_state)"></i>
   </div>
 </template>
 
@@ -30,15 +30,24 @@ const contractState = (index:any) => {
     flex: 1;
     background: #f3f3f3;
     margin: 0 1px;
-    .green{
+    &.green{
       background: #50D400;
     }
-    .orange{
+    &.orange{
       background: #FE9215;
     }
-    .red{
+    &.red{
       background: #FF4800;
     }
   }
+}
+.contract_progress i.green{
+  background: #50D400;
+}
+.contract_progress i.orange{
+  background: #FE9215;
+}
+.contract_progress i.red{
+  background: #FF4800;
 }
 </style>
