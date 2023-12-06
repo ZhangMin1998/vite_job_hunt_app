@@ -79,7 +79,7 @@
 <script setup lang="ts">
 import { showToast } from 'vant'
 import ProgressBar from '@/components/ProgressBar.vue'
-import { getContractDetail } from '@/api/contract'
+import { getContractDetail, contractOperation } from '@/api/contract'
 
 const router = useRouter()
 const state = reactive({
@@ -105,6 +105,26 @@ const queryContractDetail = async () => {
   state.loading = false
 }
 queryContractDetail()
+
+const putContractOperation = async (type:any) => {
+  state.loading = true
+  const res = await contractOperation({
+    "is_contract_type": type, 
+    "contract_id": contractId 
+  })
+  if((res as any).errCode === 200) onClickLeft()
+  showToast((res as any).meg)
+  state.loading = false
+}
+const sendChange = () => {
+  putContractOperation(2)
+}
+const refuseChange = () => {
+  putContractOperation(5)
+}
+const confirmChange = () => {
+  putContractOperation(3)
+}
 </script>
 
 <style lang="less" scoped>

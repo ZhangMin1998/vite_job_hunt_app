@@ -21,8 +21,11 @@ import {
   Search
 } from 'vant'
 import './utils/rem'
+import { directives } from './utils/common'
 
 const app = createApp(App)
+directives(app)
+
 app.use(Button)
 app.use(NavBar)
 app.use(Tabbar)
