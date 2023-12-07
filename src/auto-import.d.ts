@@ -21,6 +21,7 @@ declare global {
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
   const getHotSearch: typeof import('./api/task')['getHotSearch']
+  const getMessageList: typeof import('./api/message')['getMessageList']
   const getPolicy: typeof import('./api/user')['getPolicy']
   const getPosiTypeList: typeof import('./api/task')['getPosiTypeList']
   const getScreenList: typeof import('./api/task')['getScreenList']

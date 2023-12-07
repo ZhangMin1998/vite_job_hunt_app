@@ -1,15 +1,16 @@
 <template>
   <dl class="message_item" v-for="(item, index) in messageList" :key="index"  @click="gotoDetail(item as any)">
     <dd>
-      <img src="@/assets/img/icon/icon-message.png">
-      <span></span>
+      <img v-if="item.receive_is_read" :src="item.receive_is_read">
+      <img v-else src="@/assets/img/icon/icon-message.png">
+      <span v-if="item.is_show"></span>
     </dd>
     <dt>
       <h3>
-        系统通知
-        <span>6分钟前</span>
+        {{ item.things_type === 1 ? item.receive_id_name : item.title }}
+        <span>{{ item.create_time }}</span>
       </h3>
-      <p>你好，我们这边在招聘web前端开发工程师职位，看了你的简历觉得</p>
+      <p>{{ item.content }}</p>
     </dt>
   </dl>
 </template>
