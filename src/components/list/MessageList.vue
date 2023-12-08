@@ -18,7 +18,7 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
 
-defineProps({
+const props = defineProps({
   messageList: {
     type: Array,
     default: () => []
@@ -29,8 +29,10 @@ defineProps({
 })
 
 const router = useRouter()
-const gotoDetail = (id: number) => {
-  router.push('/contract/details/' + id)
+const gotoDetail = (item:any) => {
+  if(props.type === 'system'){
+    router.push('/message/systemList')
+  }
 }
 
 </script>

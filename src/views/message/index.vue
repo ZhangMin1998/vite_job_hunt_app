@@ -1,5 +1,5 @@
 <template>
-  <MessageList :messageList="store.systemNewMessage"></MessageList>
+  <MessageList :messageList="store.systemNewMessage" :type="'system'"></MessageList>
   <FooterTabbar></FooterTabbar>
 </template>
 
