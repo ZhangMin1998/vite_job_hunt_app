@@ -25,6 +25,7 @@ declare global {
   const getPolicy: typeof import('./api/user')['getPolicy']
   const getPosiTypeList: typeof import('./api/task')['getPosiTypeList']
   const getScreenList: typeof import('./api/task')['getScreenList']
+  const getSystemDetail: typeof import('./api/message')['getSystemDetail']
   const getTaskAllList: typeof import('./api/task')['getTaskAllList']
   const getTaskDetail: typeof import('./api/task')['getTaskDetail']
   const getTaskList: typeof import('./api/task')['getTaskList']
