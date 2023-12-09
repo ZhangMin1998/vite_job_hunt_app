@@ -14,6 +14,7 @@ declare global {
   const defineComponent: typeof import('vue')['defineComponent']
   const effectScope: typeof import('vue')['effectScope']
   const getBannerList: typeof import('./api/task')['getBannerList']
+  const getChatMessageList: typeof import('./api/message')['getChatMessageList']
   const getCityList: typeof import('./api/task')['getCityList']
   const getCode: typeof import('./api/user')['getCode']
   const getContractAllList: typeof import('./api/contract')['getContractAllList']

@@ -28,7 +28,7 @@ const querySystemDetail = async () => {
   })
   if(res){
       state.item = (res as any)[0]
-  }else{
+  }else{ 
     showToast((res as any).msg)
   }
   state.loading = false

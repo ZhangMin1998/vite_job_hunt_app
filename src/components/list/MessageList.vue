@@ -33,6 +33,9 @@ const gotoDetail = (item:any) => {
   if(props.type === 'system'){
     router.push('/message/systemList')
   }
+  if(props.type === 'talk') {
+    router.push('/message/talk/' + item.things_id + '/' + item.receive_id)
+  }
 }
 
 </script>

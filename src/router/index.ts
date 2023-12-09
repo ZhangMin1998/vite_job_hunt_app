@@ -55,7 +55,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/message/systemDetails.vue')
   },
   {
-    path: '/message/talk/:id',
+    path: '/message/talk/:taskId/:userId',
     component: () => import('@/views/message/talk.vue')
   },
   {

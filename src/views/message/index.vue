@@ -1,5 +1,6 @@
 <template>
-  <MessageList :messageList="store.systemNewMessage" :type="'system'"></MessageList>
+  <MessageList :messageList="store.systemNewMessage" type="system"></MessageList>
+  <MessageList :messageList="store.messageList" :type="'talk'"></MessageList>
   <FooterTabbar></FooterTabbar>
 </template>
 
@@ -12,6 +13,7 @@ import { messageStore } from '@/store/message'
 // const uStore = userStore()
 const store = messageStore()
 store.getSystemMessageList()
+store.queryChatMessageList()
 </script>
 
 <style lang="less" scoped>

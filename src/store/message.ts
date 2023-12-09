@@ -1,5 +1,5 @@
 import { defineStore } from "pinia"
-import { getMessageList } from "@/api/message"
+import { getMessageList, getChatMessageList } from "@/api/message"
 
 export const messageStore = defineStore({
   id: 'message',
@@ -22,6 +22,14 @@ export const messageStore = defineStore({
         if(this.systemMessageList[0]) { // 系统新消息，只显示最新的一条
           this.systemNewMessage = [this.systemMessageList[0]]
         }
+      }
+    },
+
+    // 对话消息列表
+    async queryChatMessageList() {
+      const res = await getChatMessageList({})
+      if (res) {
+        this.messageList = res.data
       }
     }
   }

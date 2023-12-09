@@ -18,6 +18,15 @@ export function getSystemDetail(data: any) {
   })
 }
 
+// 获取对话列表
+export function getChatMessageList(data: any) {
+  return request({
+    url: '/it_chat/my/message/list',
+    method: 'get',
+    params: data
+  })
+}
+
 // 获取验证码
 export function getCode(data: any) {
   return request({
