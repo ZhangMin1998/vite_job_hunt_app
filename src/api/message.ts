@@ -27,6 +27,15 @@ export function getChatMessageList(data: any) {
   })
 }
 
+// 获取对话消息聊天内容
+export function getChatMessageContent(data: any) {
+  return request({
+    url: '/it_chat/message/list',
+    method: 'get',
+    params: data
+  })
+}
+
 // 获取验证码
 export function getCode(data: any) {
   return request({

@@ -1,16 +1,17 @@
 <template>
   <van-nav-bar
-    title="深圳有鱼智能科技有限公司"
+    :title="state.taskName"
     left-arrow
     @click-left="onClickLeft"
   />
   <div class="talk_page">
     <dl>
-      <dt>
-        <h5>昨天 16：25</h5>
+      <dt v-for="(item,index) in state.list" :key="index" :class="item.receive_id === receiveId ? 'active' : ''">
+        <h5>{{ item.create_time }}</h5>
         <div>
-          <img src="" alt="">
-          <p>yhsdfgsdfhsdifjeipo</p>
+          <img v-if="item.receive_id === receiveId" :src="item.senderPhoto" />
+          <img v-else :src="item.receivePhoto" />
+          <p>{{item.text}}</p>
         </div>
       </dt>
     </dl>
@@ -27,28 +28,55 @@
 
 <script setup lang="ts">
 import { showToast } from 'vant'
-import { getSystemDetail } from '@/api/message'
+import { getChatMessageContent } from '@/api/message'
 
 const router = useRouter()
-const id = router.currentRoute.value.params.id
+const taskId = router.currentRoute.value.params.taskId
+const receiveId = router.currentRoute.value.params.userId // 接收人id  自己是发送人
 const state = reactive({
-  item: '',
-  loading: false
+  list: '',
+  loading: false,
+  value: '', // 输入框的值
+  taskName: '', // 对话标题名称
 })
+const createSetInterval = ref(null)
 
 const onClickLeft = () => history.back()
-const querySystemDetail = async () => {
-  const res = await getSystemDetail({
-    id: id
+const queryChatMessageContent = async () => {
+  const res = await getChatMessageContent({
+    receive_id: receiveId,
+    things_id: taskId,
+    things_type: 0
   })
   if(res){
-      state.item = (res as any)[0]
+    state.list = (res as any).data
+    state.taskName = res.data[0] && res.data[0].task_name || '任务'
   }else{ 
     showToast((res as any).msg)
   }
   state.loading = false
 }
-querySystemDetail()
+queryChatMessageContent()
+
+const createInterval = () => {
+  console.log(666);
+  
+  stopInterval()
+  createSetInterval.value = setInterval(()=>{
+    queryChatMessageContent()
+  }, 5000) as any
+}
+const stopInterval = () => {
+  if (createSetInterval.value) {
+    clearInterval(createSetInterval.value)
+    createSetInterval.value = null
+  }
+}
+createInterval()
+onBeforeUnmount(() => {
+  stopInterval()
+})
+
 </script>
 
 <style lang="less" scoped>
@@ -77,6 +105,7 @@ querySystemDetail()
           margin-right: 0.64rem;
         }
         p{
+          font-size: 0.75rem;
           width: 12.53rem;
           background: #FFFFFF;
           border: 1px solid #EFEFEF;
