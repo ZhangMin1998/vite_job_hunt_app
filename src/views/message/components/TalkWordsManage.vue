@@ -20,22 +20,27 @@
     </van-swipe-cell>
   </div>
   <button class="add" @click="addChange">添加常用语</button>
+  <!--常用语添加弹窗-->
+  <van-popup v-model:show="state.addBool" position="left" duration="0.2" :style="{ width: '100%',height: '100%' }">
+    <TalkWordsAdd :title="state.title" :id="state.editId" :text="state.text"></TalkWordsAdd>
+  </van-popup>
 </template>
 
 <script setup lang="ts">
-import { reactive } from 'vue'
+import { reactive, provide, inject } from 'vue'
 import { showToast } from 'vant'
-import { getChatMessageWordsList } from '@/api/message'
+import TalkWordsAdd from '@/views/message/components/TalkWordsAdd.vue'
+import { getChatMessageWordsList, deleteChatMessageWords } from '@/api/message'
 
 const { closeWorksManage } = inject('popup')
 
 const state = reactive({
   list: [],
   loading: false,
-  value: '',
   editId: '',
   text: '',
   title: '',
+  addBool: false // 是否显示add
 })
 
 const queryChatMessageWordsList = async () => {
@@ -52,20 +57,14 @@ queryChatMessageWordsList()
 
 // 删除
 const submitDelete = async (id) => {
-  if(!state.value) {
-    showToast('请输入常用语')
-    return
-  }
   state.loading = true
-  const res = await addChatMessageWords({
-    text: state.value
+  const res = await deleteChatMessageWords({
+    id: id
   })
   if (res) {
-    state.value = ''
-    closeWorksManage()
-  } else {
-    showToast(res.msg)
+    queryChatMessageWordsList()
   }
+  showToast(res.msg)
   state.loading = false
 }
 // 编辑
@@ -73,13 +72,24 @@ const editChange = (id, text) => {
   state.editId = id
   state.text = text
   state.title = '修改常用语'
+  state.addBool = true
 }
 // 添加
 const addChange = () => {
   state.editId = ''
   state.text = ''
   state.title = '添加常用语'
+  state.addBool = true
 }
+
+const closeWorksAdd = () => {
+  state.addBool = false
+  queryChatMessageWordsList()
+}
+
+provide('popup', {
+  closeWorksAdd
+})
 </script>
 
 <style lang="less" scoped>

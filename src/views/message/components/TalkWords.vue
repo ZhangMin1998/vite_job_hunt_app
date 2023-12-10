@@ -16,7 +16,7 @@
     </van-popup>
     <!--常用语管理弹窗-->
     <van-popup v-model:show="state.manageBool" position="left" duration="0.2" :style="{ width: '100%',height: '100%' }">
-      <TalkWordsManage title="添加常用语"></TalkWordsManage>
+      <TalkWordsManage></TalkWordsManage>
     </van-popup>
   </div>
 </template>

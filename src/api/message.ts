@@ -53,3 +53,21 @@ export function addChatMessageWords(data: any) {
     data
   })
 }
+
+// 常用语编辑
+export function editChatMessageWords(data: any) {
+  return request({
+    url: '/it_chat/message/works/edit',
+    method: 'post',
+    data
+  })
+}
+
+// 常用语删除
+export function deleteChatMessageWords(data: any) {
+  return request({
+    url: '/it_chat/message/works/delete',
+    method: 'post',
+    data
+  })
+}

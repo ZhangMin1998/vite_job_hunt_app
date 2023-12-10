@@ -22,20 +22,29 @@
 </template>
 
 <script setup lang="ts">
-import { reactive } from 'vue'
+import { reactive, watchEffect } from 'vue'
 import { showToast } from 'vant'
-import { addChatMessageWords } from '@/api/message'
+import { addChatMessageWords, editChatMessageWords } from '@/api/message'
 
 const { closeWorksAdd } = inject('popup')
 const props = defineProps({
   title: {
     type: String
   },
+  id: {
+    type: [Number, String]
+  },
+  text: {
+    type: String
+  }
 })
 const state = reactive({
   list: [],
   loading: false,
   value: '', 
+})
+watchEffect(()=>{
+  state.value = props.text
 })
 
 const submitAdd = async () => {
@@ -44,9 +53,17 @@ const submitAdd = async () => {
     return
   }
   state.loading = true
-  const res = await addChatMessageWords({
-    text: state.value
-  })
+  let res
+  if (props.id) { // 编辑
+    res = await editChatMessageWords({
+      id: props.id,
+      text: state.value
+    })
+  } else { // 添加
+    res = await addChatMessageWords({
+      text: state.value
+    })
+  }
   if (res) {
     state.value = ''
     closeWorksAdd()

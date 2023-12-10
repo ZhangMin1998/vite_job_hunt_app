@@ -13,6 +13,8 @@ declare global {
   const customRef: typeof import('vue')['customRef']
   const defineAsyncComponent: typeof import('vue')['defineAsyncComponent']
   const defineComponent: typeof import('vue')['defineComponent']
+  const deleteChatMessageWords: typeof import('./api/message')['deleteChatMessageWords']
+  const editChatMessageWords: typeof import('./api/message')['editChatMessageWords']
   const effectScope: typeof import('vue')['effectScope']
   const getBannerList: typeof import('./api/task')['getBannerList']
   const getChatMessageContent: typeof import('./api/message')['getChatMessageContent']
