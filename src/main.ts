@@ -19,7 +19,8 @@ import {
   List,
   ActionBarIcon,
   Search,
-  Field
+  Field,
+  SwipeCell
 } from 'vant'
 import './utils/rem'
 import { directives } from './utils/common'
@@ -42,6 +43,7 @@ app.use(List)
 app.use(ActionBarIcon)
 app.use(Search)
 app.use(Field)
+app.use(SwipeCell)
 
 app.use(store)
 app.use(router)
