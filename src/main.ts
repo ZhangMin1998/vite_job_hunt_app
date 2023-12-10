@@ -18,7 +18,8 @@ import {
   PullRefresh,
   List,
   ActionBarIcon,
-  Search
+  Search,
+  Field
 } from 'vant'
 import './utils/rem'
 import { directives } from './utils/common'
@@ -40,6 +41,7 @@ app.use(PullRefresh)
 app.use(List)
 app.use(ActionBarIcon)
 app.use(Search)
+app.use(Field)
 
 app.use(store)
 app.use(router)

@@ -45,10 +45,10 @@ export function getChatMessageWordsList(data: any) {
   })
 }
 
-// 获取验证码
-export function getCode(data: any) {
+// 常用语添加
+export function addChatMessageWords(data: any) {
   return request({
-    url: '/login/code',
+    url: '/it_chat/message/works/add',
     method: 'post',
     data
   })
