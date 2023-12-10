@@ -19,7 +19,7 @@
   <div class="talk_bottom">
     <div class="talk_input">
       <span @click="worksClick">常用语</span>
-      <input type="text" />
+      <input type="text" v-model="state.value" />
       <van-icon name="smile-o" />
       <span>发送</span>
     </div>
@@ -83,6 +83,14 @@ onBeforeUnmount(() => {
 const worksClick = () => {
   state.worksVisible = !state.worksVisible
 }
+const worksChange = (value: any) => {
+  state.value = value
+  state.worksVisible = false
+}
+
+provide('popup', {
+  worksChange
+})
 
 </script>
 

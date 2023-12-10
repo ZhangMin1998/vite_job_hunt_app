@@ -1,8 +1,8 @@
 <template>
   <div class="talk_word">
     <dl>
-      <dt>
-        66666
+      <dt v-for="(item,index) in state.list" :key="index" @click="worksChange(item.text)">
+        {{ item.text }}
       </dt>
     </dl>
     <div class="talk_word_btn">
@@ -20,13 +20,26 @@
 </template>
 
 <script setup lang="ts">
-import { reactive } from 'vue'
-// import { getChatMessageWordsList } from '@/api/message'
+import { getChatMessageWordsList } from '@/api/message'
 
+const { worksChange }  = inject('popup')
 const state = reactive({
   list: [],
   loading: false
 })
+
+const queryChatMessageWordsList = async () => {
+  state.loading = true
+  const res = await getChatMessageWordsList({})
+  if(res){
+    state.list = (res as any).data
+  }else{ 
+    showToast((res as any).msg)
+  }
+  state.loading = false
+}
+queryChatMessageWordsList()
+
 </script>
 
 <style lang="less" scoped>
