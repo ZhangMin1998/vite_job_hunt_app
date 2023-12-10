@@ -18,17 +18,19 @@
   </div>
   <div class="talk_bottom">
     <div class="talk_input">
-      <span>常用语</span>
+      <span @click="worksClick">常用语</span>
       <input type="text" />
       <van-icon name="smile-o" />
       <span>发送</span>
     </div>
+    <TalkWords v-if="state.worksVisible"></TalkWords>
   </div>
 </template>
 
 <script setup lang="ts">
 import { showToast } from 'vant'
 import { getChatMessageContent } from '@/api/message'
+import TalkWords from '@/views/message/components/TalkWords.vue'
 
 const router = useRouter()
 const taskId = router.currentRoute.value.params.taskId
@@ -38,6 +40,7 @@ const state = reactive({
   loading: false,
   value: '', // 输入框的值
   taskName: '', // 对话标题名称
+  worksVisible: false,
 })
 const createSetInterval = ref(null)
 
@@ -76,6 +79,10 @@ createInterval()
 onBeforeUnmount(() => {
   stopInterval()
 })
+
+const worksClick = () => {
+  state.worksVisible = !state.worksVisible
+}
 
 </script>
 

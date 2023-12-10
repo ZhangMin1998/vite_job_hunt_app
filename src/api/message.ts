@@ -36,6 +36,15 @@ export function getChatMessageContent(data: any) {
   })
 }
 
+// 获取常用语列表
+export function getChatMessageWordsList(data: any) {
+  return request({
+    url: '/it_chat/message/works/list',
+    method: 'get',
+    params: data
+  })
+}
+
 // 获取验证码
 export function getCode(data: any) {
   return request({

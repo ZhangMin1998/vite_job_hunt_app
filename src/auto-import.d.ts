@@ -16,6 +16,7 @@ declare global {
   const getBannerList: typeof import('./api/task')['getBannerList']
   const getChatMessageContent: typeof import('./api/message')['getChatMessageContent']
   const getChatMessageList: typeof import('./api/message')['getChatMessageList']
+  const getChatMessageWordsList: typeof import('./api/message')['getChatMessageWordsList']
   const getCityList: typeof import('./api/task')['getCityList']
   const getCode: typeof import('./api/user')['getCode']
   const getContractAllList: typeof import('./api/contract')['getContractAllList']
