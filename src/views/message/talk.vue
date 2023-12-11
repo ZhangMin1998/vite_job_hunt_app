@@ -20,10 +20,11 @@
     <div class="talk_input">
       <span @click="worksClick">常用语</span>
       <input type="text" v-model="state.value" />
-      <van-icon name="smile-o" />
+      <van-icon name="smile-o"  @click="emojiClick"/>
       <span>发送</span>
     </div>
     <TalkWords v-if="state.worksVisible"></TalkWords>
+    <TalkEmoji v-if="state.emojiVisible"></TalkEmoji>
   </div>
 </template>
 
@@ -31,6 +32,7 @@
 import { showToast } from 'vant'
 import { getChatMessageContent } from '@/api/message'
 import TalkWords from '@/views/message/components/TalkWords.vue'
+import TalkEmoji from '@/views/message/components/TalkEmoji.vue'
 
 const router = useRouter()
 const taskId = router.currentRoute.value.params.taskId
@@ -41,6 +43,7 @@ const state = reactive({
   value: '', // 输入框的值
   taskName: '', // 对话标题名称
   worksVisible: false,
+  emojiVisible: false
 })
 const createSetInterval = ref(null)
 
@@ -81,15 +84,25 @@ onBeforeUnmount(() => {
 })
 
 const worksClick = () => {
+  state.emojiVisible = false
   state.worksVisible = !state.worksVisible
 }
 const worksChange = (value: any) => {
-  state.value = value
+  state.value = state.value + value
   state.worksVisible = false
+}
+const emojiClick = () => {
+  state.worksVisible = false
+  state.emojiVisible = !state.emojiVisible
+}
+const emojiChange = (value: any) => {
+  state.value = state.value + value
+  state.emojiVisible = false
 }
 
 provide('popup', {
-  worksChange
+  worksChange,
+  emojiChange
 })
 
 </script>

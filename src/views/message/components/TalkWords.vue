@@ -22,6 +22,7 @@
 </template>
 
 <script setup lang="ts">
+import { showToast } from 'vant'
 import { getChatMessageWordsList } from '@/api/message'
 import TalkWordsAdd from '@/views/message/components/TalkWordsAdd.vue'
 import TalkWordsManage from '@/views/message/components/TalkWordsManage.vue'
