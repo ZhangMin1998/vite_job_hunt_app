@@ -21,7 +21,7 @@
       <span @click="worksClick">常用语</span>
       <input type="text" v-model="state.value" />
       <van-icon name="smile-o"  @click="emojiClick"/>
-      <span>发送</span>
+      <span @click="sendMessage">发送</span>
     </div>
     <TalkWords v-if="state.worksVisible"></TalkWords>
     <TalkEmoji v-if="state.emojiVisible"></TalkEmoji>
@@ -30,7 +30,7 @@
 
 <script setup lang="ts">
 import { showToast } from 'vant'
-import { getChatMessageContent } from '@/api/message'
+import { getChatMessageContent, sendChatMessageContent } from '@/api/message'
 import TalkWords from '@/views/message/components/TalkWords.vue'
 import TalkEmoji from '@/views/message/components/TalkEmoji.vue'
 
@@ -49,6 +49,7 @@ const createSetInterval = ref(null)
 
 const onClickLeft = () => history.back()
 const queryChatMessageContent = async () => {
+  state.loading = true
   const res = await getChatMessageContent({
     receive_id: receiveId,
     things_id: taskId,
@@ -64,9 +65,7 @@ const queryChatMessageContent = async () => {
 }
 queryChatMessageContent()
 
-const createInterval = () => {
-  console.log(666);
-  
+const createInterval = () => { 
   stopInterval()
   createSetInterval.value = setInterval(()=>{
     queryChatMessageContent()
@@ -98,6 +97,22 @@ const emojiClick = () => {
 const emojiChange = (value: any) => {
   state.value = state.value + value
   state.emojiVisible = false
+}
+
+const sendMessage = async () => {
+  state.loading = true
+  const res = await sendChatMessageContent({
+    "receive_id": receiveId, 
+    "things_id": taskId, 
+    "content": state.value, 
+    "things_type": 0
+  })
+  if(res) {
+    queryChatMessageContent()
+    state.value = ''
+  }
+  showToast((res as any).msg)
+  state.loading = false
 }
 
 provide('popup', {

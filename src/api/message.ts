@@ -36,6 +36,15 @@ export function getChatMessageContent(data: any) {
   })
 }
 
+// 发送消息
+export function sendChatMessageContent(data: any) {
+  return request({
+    url: '/it_chat/add_message',
+    method: 'post',
+    data
+  })
+}
+
 // 获取常用语列表
 export function getChatMessageWordsList(data: any) {
   return request({
