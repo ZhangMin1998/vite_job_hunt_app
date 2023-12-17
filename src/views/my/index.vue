@@ -22,26 +22,30 @@
         <img src="@/assets/img/my/icon-my-collection.png" />
         <span>我的收藏</span>
       </router-link>
+      <strong></strong>
       <router-link to="/my/resume">
         <img src="@/assets/img/my/icon-my-collection.png" />
         <span>我的简历</span>
       </router-link>
     </div>
 
-    <!-- <div class="my_contract">
+    <div class="my_contract">
       <div class="my_title">
         <h3>我的合约</h3>
-        <span>查看全部合约</span>
+        <span>
+          查看全部合约
+          <van-icon name="arrow" />
+        </span>
       </div>
       <div class="my_contract_cur">
-        <span>待签约</span>
-        <span>履约中</span>
-        <span>已完成</span>
-        <span>已取消</span>
+        <span><img src="@/assets/img/my/contract-be-signed.png" />待签约</span>
+        <span><img src="@/assets/img/my/contract-in-performance.png" />履约中</span>
+        <span><img src="@/assets/img/my/contract-completed.png" />已完成</span>
+        <span><img src="@/assets/img/my/contract-canceled.png" />已取消</span>
       </div>
-    </div> -->
+    </div>
 
-    <!-- <div class="my_common">
+    <div class="my_common">
       <div class="my_title">
         <h3>常用功能</h3>
       </div>
@@ -55,9 +59,9 @@
         <label>专属客户经理</label>
         <span><img src="@/assets/img/icon/icon-message.png" />无忧经理<van-icon name="arrow" /></span>
       </div>
-    </div> -->
+    </div>
 
-    <!-- <div class="my_common">
+    <div class="my_common">
       <div class="my_item">
         <img src="@/assets/img/my/icon-feedback.png" />
         <label>意见反馈</label>
@@ -68,20 +72,20 @@
         <label>关于我们</label>
         <span><van-icon name="arrow" /></span>
       </div>
-    </div> -->
+    </div>
 
-    <!-- <div class="my_common">
-      <div class="my_item">
+    <div class="my_common">
+      <!-- <div class="my_item">
         <img src="@/assets/img/my/icon-feedback.png" />
         <label>意见反馈</label>
         <span><van-icon name="arrow" /></span>
-      </div>
+      </div> -->
       <div class="my_item">
         <img src="@/assets/img/my/icon-switch-role.png" />
         <label>切换身份</label>
         <span class="col-9">当前为IT企业人才身份<van-icon name="arrow" /></span>
       </div>
-    </div> -->
+    </div>
   </div>
   <FooterTabbar></FooterTabbar>
 </template>
@@ -96,6 +100,20 @@ const gotoPage = (path:any) => {
 </script>
 
 <style lang="less" scoped>
+:deep(.van-nav-bar){
+  background: none;
+}
+:deep(.van-nav-bar__title){
+  color: #ffffff;
+  font-size:0.96rem;
+}
+:deep(.van-nav-bar .van-icon){
+  font-size: 1.12rem;
+  color: #ffffff;
+}
+:deep(.van-hairline--bottom:after) {
+  border: 0;
+}
 .my_page{
   height: calc(100vh - 3rem);
   padding: 0 0.77rem 3rem;
@@ -170,36 +188,105 @@ const gotoPage = (path:any) => {
         color: #666666;
       }
     }
-    
+    strong{
+      width: 0.03rem;
+      height: 1.95rem;
+      background: #EDEDED;
+      margin-left: 1.92rem;
+    }
   }
   .my_contract{
+    height: 7.9rem;
+    background: #FFFFFF;
+    border-radius: 0.27rem;
+    margin-bottom: 0.59rem;
     .my_title{
+      height: 2.69rem;
+      border-bottom: 1px solid #eeeeee;
+      display: flex;
+      align-items: center;
+      padding: 0 0.8rem;
       h3{
-
+        font-size: 0.8rem;
+        line-height: 0.8rem;
+        font-weight: 400;
+        color: #333333;
       }
       span{
-
+        flex: 1;
+        text-align: right;
+        font-size: 0.64rem;
+        color: #464646;
       }
     }
     .my_contract_cur{
+      height: 5.17rem;
+      display: flex;
+      align-items: center;
+      vertical-align: center;
       span{
-
+        flex: 1;
+        text-align: center;
+        font-size: 0.69rem;
+        color: #464646;
+        img{
+          width: 1.39rem;
+          height: 1.39rem;
+          display: block;
+          margin: 0 auto 0.59rem;
+        }
       }
     }
   }
   .my_common{
+    background: #FFFFFF;
+    border-radius: 0.27rem;
+    margin-bottom: 0.59rem;
     .my_title{
-
+      height: 2.69rem;
+      border-bottom: 1px solid #eeeeee;
+      display: flex;
+      align-items: center;
+      padding: 0 0.8rem;
+      h3{
+        font-size: 0.8rem;
+        line-height: 0.8rem;
+        font-weight: 400;
+        color: #333333;
+        flex: 1;
+      }
     }
     .my_item{
+      height: 2.67rem;
+      background-color: #fff;
+      border-bottom: 1px solid #eeeeee;
+      display: flex;
+      align-items: center;
+      padding: 0 0.4rem 0 0rem;
+      margin-left: 0.69rem;
+      font-size: 0.69rem;
+      color: #464646;
+      &:last-child{
+        border-bottom: 0;
+      }
       img{
-
+        width: 1.12rem;
+        height: 1.12rem;
+        margin-right: 0.85rem;
       }
       label{
-
+        flex: 1;
       }
       span{
-
+        display: flex;
+        align-items: center;
+        text-align: right;
+        img{
+          width: 1.28rem;
+          height: 1.28rem;
+          border-radius: 50%;
+          margin-right: 0.32rem;
+        }
       }
     }
   }
