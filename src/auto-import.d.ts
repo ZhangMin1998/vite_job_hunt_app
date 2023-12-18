@@ -35,6 +35,7 @@ declare global {
   const getTaskAllList: typeof import('./api/task')['getTaskAllList']
   const getTaskDetail: typeof import('./api/task')['getTaskDetail']
   const getTaskList: typeof import('./api/task')['getTaskList']
+  const getUserInfo: typeof import('./api/my')['getUserInfo']
   const h: typeof import('vue')['h']
   const inject: typeof import('vue')['inject']
   const isProxy: typeof import('vue')['isProxy']

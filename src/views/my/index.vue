@@ -9,9 +9,13 @@
     </van-nav-bar>
     
     <div class="my_info">
-      <img src="@/assets/img/icon/icon-message.png" />
+      <img v-if="store.userInfo.it_head" :src="store.userInfo.it_head" />
+      <img v-else src="@/assets/img/icon/icon-message.png" />
       <div>
-        <h3>前端<span></span></h3>
+        <h3>
+          {{ store.userInfo.user_name }}
+          <span></span>
+        </h3>
         <p>IT企业人才</p>
       </div>
       <i></i>
@@ -92,10 +96,15 @@
 
 <script setup lang="ts">
 import FooterTabbar from '@/components/FooterTabbar.vue'
+import { myStore } from '@/store/my'
 
+const store = myStore()
 const router = useRouter()
 const gotoPage = (path:any) => {
   router.push(path)
+}
+if(!store.userInfo.user_name) {
+  store.queryUserInfo()
 }
 </script>
 
