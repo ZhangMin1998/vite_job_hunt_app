@@ -1,1 +1,136 @@
-<template></template>
+<template>
+  <van-nav-bar
+    title="个人信息"
+    left-arrow
+    @click-left="onClickLeft"
+  />
+  <div class="user_page">
+    <van-form @submit="setUserModify">
+      <div class="user_pic">
+        <van-uploader
+          v-model="state.fileList" accept=".jpg,.png" 
+          :after-read="afterRead" 
+          :before-delete ="deleteFile"
+          max-count="1"
+        />
+      </div>
+      <div class="user_item">
+        <h5>姓名</h5>
+        <van-field v-model="state.userName" label="" placeholder="请输入您的姓名" />
+      </div>
+      <div class="user_item">
+        <h5>性别</h5>
+        <van-field
+          v-model="state.sex"
+          label="" 
+          placeholder="请选择您的性别"
+          readonly
+          is-link
+          @click="state.showSex = true"
+        />
+        <van-action-sheet
+          v-model:show="state.showSex"
+          :actions="sexList"
+          cancel-text="取消"
+          close-on-click-action
+          @select="sexSelect"
+        />
+      </div>
+      <div class="user_item">
+        <h5>出生日期</h5>
+        <van-field 
+          v-model="state.birthday" 
+          label="" 
+          placeholder="请选择您的出生日期"
+          readonly
+          is-link
+          @click="state.showBirthday = true"
+         />
+         <van-action-sheet v-model:show="state.showBirthday">
+          <van-date-picker
+            type="year-month"
+            title="选择年月"
+            :min-date="state.minDate"
+            :max-date="state.maxDate"
+            @confirm="birthdayConfirm"
+            @cancel="state.showBirthday = false"
+          />
+        </van-action-sheet>
+      </div>
+      <div class="user_item">
+        <h5>参加工作时间</h5>
+        <van-field v-model="state.workTime" label="" placeholder="请选择您的工作时间" />
+      </div>
+      <div class="user_item">
+        <h5>所在城市</h5>
+        <van-field v-model="state.city" label="" placeholder="请选择您的城市" />
+      </div>
+      <button class="wy_confirm_btn" native-type="submit">完成</button>
+    </van-form>
+  </div>
+</template>
+
+<script setup lang="ts">
+// import { showToast } from 'vant'
+
+const state = reactive({
+  loading: false,
+  fileList: [],
+  userName: '',
+  sex: '',
+  birthday: '',
+  workTime: '',
+  city: '',
+  showSex: false,
+  showBirthday: false,
+  minDate: new Date(1970,1,1),
+  maxDate: new Date()
+})
+const sexList = [
+  { name: '男'},
+  { name: '女'}
+]
+
+const onClickLeft = () => history.back()
+const afterRead = async (file:any) => {
+  console.log(file)
+}
+const deleteFile = () => {
+
+}
+const setUserModify = async() => {
+
+}
+const sexSelect = (value:any) => {
+  state.sex = value.name
+}
+const birthdayConfirm = (value:any) => {
+  state.birthday = value.getFullYear() + '-' + (value.getMonth()+1)
+  state.showBirthday = false
+}
+</script>
+
+<style lang="less" scoped>
+.user_page{
+  .user_pic{
+
+  }
+  .user_item{
+
+  }
+  .wy_confirm_btn{
+    font-size: 0.8rem;
+    color: #FFFFFF;
+    height: 2.35rem;
+    line-height: 2.35rem;
+    background: linear-gradient(90deg, #FEA829, #FE8F27);
+    border-radius: 0.27rem;
+    border: 0;
+    width: calc(100vw - 1.2rem);
+    margin: 0 0.6rem 0.6rem;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+  }
+}
+</style>

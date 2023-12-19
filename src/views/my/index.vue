@@ -11,7 +11,7 @@
     <div class="my_info">
       <img v-if="store.userInfo.it_head" :src="store.userInfo.it_head" />
       <img v-else src="@/assets/img/icon/icon-message.png" />
-      <div>
+      <div @click="gotoPage('/my/user')">
         <h3>
           {{ store.userInfo.user_name }}
           <span></span>

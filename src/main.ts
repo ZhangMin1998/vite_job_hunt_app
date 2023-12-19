@@ -20,7 +20,11 @@ import {
   ActionBarIcon,
   Search,
   Field,
-  SwipeCell
+  SwipeCell,
+  Uploader,
+  Form,
+  ActionSheet,
+  DatePicker
 } from 'vant'
 import './utils/rem'
 import { directives } from './utils/common'
@@ -44,6 +48,10 @@ app.use(ActionBarIcon)
 app.use(Search)
 app.use(Field)
 app.use(SwipeCell)
+app.use(Uploader)
+app.use(Form)
+app.use(ActionSheet)
+app.use(DatePicker)
 
 app.use(store)
 app.use(router)
