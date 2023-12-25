@@ -24,7 +24,8 @@ import {
   Uploader,
   Form,
   ActionSheet,
-  DatePicker
+  DatePicker,
+  Picker
 } from 'vant'
 import './utils/rem'
 import { directives } from './utils/common'
@@ -52,6 +53,7 @@ app.use(Uploader)
 app.use(Form)
 app.use(ActionSheet)
 app.use(DatePicker)
+app.use(Picker)
 
 app.use(store)
 app.use(router)
