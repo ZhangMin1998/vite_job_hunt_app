@@ -59,11 +59,42 @@
       </div>
       <div class="user_item">
         <h5>参加工作时间</h5>
-        <van-field v-model="state.workTime" label="" placeholder="请选择您的工作时间" />
+        <van-field
+          v-model="state.workTime"
+          label=""
+          placeholder="请选择您的工作时间"
+          readonly
+          is-link
+          @click="state.showWorkTime = true"
+        />
+        <van-action-sheet v-model:show="state.showWorkTime">
+          <van-date-picker
+            type="year-month"
+            title="选择年月"
+            :min-date="state.minDate"
+            :max-date="state.maxDate"
+            @confirm="workTimeConfirm"
+            @cancel="state.showWorkTime = false"
+          />
+        </van-action-sheet>
       </div>
       <div class="user_item">
         <h5>所在城市</h5>
-        <van-field v-model="state.city" label="" placeholder="请选择您的城市" />
+        <van-field
+          v-model="state.city"
+          label=""
+          placeholder="请选择您的城市"
+          readonly
+          is-link
+          @click="state.showCity = true"
+        />
+        <van-action-sheet v-model:show="state.showCity">
+          <van-picker
+            :columns="tsStore.areaList"
+            @confirm="cityConfirm"
+            @cancel="state.showCity = false"
+          />
+        </van-action-sheet>
       </div>
       <button class="wy_confirm_btn" native-type="submit">完成</button>
     </van-form>
@@ -81,8 +112,11 @@ const state = reactive({
   birthday: '',
   workTime: '',
   city: '',
+  area: '',
   showSex: false,
   showBirthday: false,
+  showWorkTime: false,
+  showCity: false,
   minDate: new Date(1970,1,1),
   maxDate: new Date()
 })
@@ -107,6 +141,15 @@ const sexSelect = (value:any) => {
 const birthdayConfirm = (value:any) => {
   state.birthday = value.getFullYear() + '-' + (value.getMonth()+1)
   state.showBirthday = false
+}
+const workTimeConfirm = (value:any) => {
+  state.workTime = value.getFullYear() + '-' + (value.getMonth()+1)
+  state.showWorkTime = false
+}
+const cityConfirm = (value:any) => {
+  state.city = value[0].text
+  state.area = value[1].text
+  state.showCity = false
 }
 </script>
 
