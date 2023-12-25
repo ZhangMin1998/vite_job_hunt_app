@@ -154,12 +154,32 @@ const cityConfirm = (value:any) => {
 </script>
 
 <style lang="less" scoped>
+:deep(.van-uploader__upload){
+  margin: 0;
+}
+.van-cell{
+  padding: 0.8rem 0 0.6rem;
+  font-size: 0.8rem;
+  line-height: 0.8rem;
+  font-weight: 100;
+  color: #999;
+}
 .user_page{
+  margin: 0 0.6rem;
   .user_pic{
-
+    text-align: center;
+    padding: 0.67rem;
+    margin-bottom: 1.47rem;
+    border-bottom: 1px solid #f3f3f3;
+    img{
+      width: 3.7rem;
+      height: 3.7rem;
+      border-radius: 50%;
+    }
   }
   .user_item{
-
+    margin-bottom: 1.47rem;
+    border-bottom: 1px solid #f3f3f3;
   }
   .wy_confirm_btn{
     font-size: 0.8rem;
