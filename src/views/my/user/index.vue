@@ -180,6 +180,12 @@ const cityConfirm = (value:any) => {
   .user_item{
     margin-bottom: 1.47rem;
     border-bottom: 1px solid #f3f3f3;
+    h5{
+      font-size: 0.75rem;
+      line-height: 0.75rem;
+      font-weight: 300;
+      color: #666;
+    }
   }
   .wy_confirm_btn{
     font-size: 0.8rem;
