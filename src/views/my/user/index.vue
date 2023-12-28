@@ -102,7 +102,12 @@
 </template>
 
 <script setup lang="ts">
+import { taskStore } from '@/store/task'
+import { myStore } from '@/store/my'
+import { common } from '@/utils/common'
 // import { showToast } from 'vant'
+const tsStore = taskStore()
+const mStore = myStore()
 
 const state = reactive({
   loading: false,
@@ -124,6 +129,29 @@ const sexList = [
   { name: '男'},
   { name: '女'}
 ]
+
+const setInfo = () => {
+  state.userName = mStore.userInfo.user_name;
+  state.sex = common.sex(mStore.userInfo.sex)
+  state.birthday = mStore.userInfo.birthday
+  state.workTime = mStore.userInfo.work_time
+  state.city = mStore.userInfo.city
+  state.area = mStore.userInfo.area
+  if(mStore.userInfo.it_head){
+    state.fileList = [{
+      url: mStore.userInfo.it_head
+    }]
+  }
+}
+if(!tsStore.areaList.length) tsStore.getCityList()
+if(!mStore.userInfo.user_name) {
+  (async function(){
+    await mStore.queryUserInfo()
+    setInfo()
+  })()
+}else{
+  setInfo()
+}
 
 const onClickLeft = () => history.back()
 const afterRead = async (file:any) => {
@@ -156,6 +184,9 @@ const cityConfirm = (value:any) => {
 <style lang="less" scoped>
 :deep(.van-uploader__upload){
   margin: 0;
+}
+:deep(.van-image__img){
+  border-radius: 50%;
 }
 .van-cell{
   padding: 0.8rem 0 0.6rem;

@@ -21,3 +21,11 @@ export const directives = (app:any) => {
     }
   })
 }
+
+export const common = {
+  sex: function(type:any){
+    if(type === 1) return '男'
+    else if(type === 2) return '女'
+    else return ''
+  }
+}

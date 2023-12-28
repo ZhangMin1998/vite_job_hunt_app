@@ -28,15 +28,15 @@ const { closeCitySwitch } = inject('popup')
 const onClickLeft = () => {
   closeCitySwitch()
 }
-const queryCityList = async () => {
-  const res = await getCityList()
-  if (res) {
-    store.setCityList(res)
-  } else {
-    showToast((res as any).msg)
-  }
-}
-if (!store.cityList.length) queryCityList()
+// const queryCityList = async () => {
+//   const res = await getCityList()
+//   if (res) {
+//     store.setCityList(res)
+//   } else {
+//     showToast((res as any).msg)
+//   }
+// }
+if (!store.cityList.length) store.getCityList()
 </script>
 
 <style lang="less" scoped>
