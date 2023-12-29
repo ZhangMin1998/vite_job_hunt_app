@@ -17,3 +17,24 @@ export function getCode(data: any) {
     data
   })
 }
+
+// 图片上传接口
+export function uploadImage(data: any) {
+  return request({
+      url: '/upload/image',
+      method: 'post',
+      data,
+      headers: {
+          'Content-Type': 'multipart/form-data'
+      }
+  })
+}
+
+// 个人信息提交接口
+export function userModify(data: any) {
+  return request({
+      url: '/user/modify',
+      method: 'put',
+      data
+  })
+}

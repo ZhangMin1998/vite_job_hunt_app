@@ -105,7 +105,8 @@
 import { taskStore } from '@/store/task'
 import { myStore } from '@/store/my'
 import { common } from '@/utils/common'
-// import { showToast } from 'vant'
+import { uploadImage,userModify } from '@/api/my'
+import { showToast } from 'vant'
 const tsStore = taskStore()
 const mStore = myStore()
 
@@ -161,7 +162,46 @@ const deleteFile = () => {
 
 }
 const setUserModify = async() => {
-
+  if(state.fileList.length === 0){
+    showToast('请上传头像')
+    return
+  }
+  if(!state.userName){
+    showToast('请填写姓名')
+    return
+  }
+  if(!state.sex){
+    showToast('请选择性别')
+    return
+  }
+  if(!state.birthday){
+    showToast('请选择出生年月')
+    return
+  }
+  if(!state.workTime){
+    showToast('请选择参加工作时间')
+    return
+  }
+  if(!state.city){
+    showToast('请选择城市')
+    return
+  }
+  state.loading = true
+  const res = await userModify({
+    "user_name": state.userName, 
+    "sex": state.sex === '男' ? 1 : (state.sex==='女' ? 2 : ''), 
+    "birthday": state.birthday, 
+    "work_time": state.workTime, 
+    "city": state.city, 
+    "area": state.area, 
+    "it_head": state.fileList[0].url,
+    "type": 1 
+  })
+  if(res){
+    mStore.queryUserInfo()
+  }
+  showToast(res.msg)
+  state.loading = false
 }
 const sexSelect = (value:any) => {
   state.sex = value.name
