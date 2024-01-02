@@ -19,6 +19,12 @@ export const userStore = defineStore({
     },
     setRole(type: string){
       this.role = type
-  },
+    },
+    logout(){
+      this.token = ''
+      this.userInfo = {}
+      localStorage.removeItem('token')
+      localStorage.removeItem('role')
+    }
   }
 })
