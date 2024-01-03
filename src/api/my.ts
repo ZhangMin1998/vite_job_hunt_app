@@ -38,3 +38,12 @@ export function userModify(data: any) {
       data
   })
 }
+
+// 获取我的收藏接口
+export function collectList() {
+  return request({
+    url: '/task/getTaskCollection',
+    method: 'get',
+    params: {}
+  })
+}
