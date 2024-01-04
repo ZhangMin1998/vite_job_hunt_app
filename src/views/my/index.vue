@@ -18,7 +18,7 @@
         </h3>
         <p>IT企业人才</p>
       </div>
-      <i></i>
+      <i @click="gotoPage('/my/account')"></i>
     </div>
 
     <div class="my_type">
