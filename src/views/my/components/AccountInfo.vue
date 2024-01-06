@@ -9,7 +9,7 @@
         <van-icon name="arrow" />
       </span>
     </p>
-    <h3>{{mStore.userInfo.account_price.toFixed(2)}}</h3>
+    <h3>{{mStore.userInfo.account_price}}</h3>
   </div>
 </template>
 
@@ -17,6 +17,7 @@
 import { myStore } from '@/store/my'
 
 const mStore = myStore()
+const router = useRouter()
 if(!mStore.userInfo.user_name) mStore.queryUserInfo()
 
 const gotoPage = (path:any) => {
