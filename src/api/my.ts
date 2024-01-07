@@ -47,3 +47,21 @@ export function collectList() {
     params: {}
   })
 }
+
+// 获取我的收入接口
+export function incomeList(data: any) {
+  return request({
+    url: '/admin/task/purchaseRecord',
+    method: 'get',
+    params: data
+  })
+}
+
+// 获取我的提现接口
+export function transferList() {
+  return request({
+    url: '/my/transfer/userList',
+    method: 'get',
+    params: {}
+  })
+}
