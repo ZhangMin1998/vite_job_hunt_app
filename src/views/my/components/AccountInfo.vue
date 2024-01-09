@@ -4,7 +4,7 @@
       <label>账户余额（无忧币）
         <van-icon @click="gotoPage('/my/account/coinExplain')" name="question-o" />
       </label>
-      <span>
+      <span @click="gotoPage('/my/account/advance')">
         提现
         <van-icon name="arrow" />
       </span>

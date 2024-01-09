@@ -65,3 +65,11 @@ export function transferList() {
     params: {}
   })
 }
+// 我的提现接口
+export function withdrawal(data: any) {
+  return request({
+    url: '/my/apply/transfer',
+    method: 'post',
+    data
+  })
+}

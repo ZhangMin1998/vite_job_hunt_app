@@ -93,6 +93,7 @@ declare global {
   const watchEffect: typeof import('vue')['watchEffect']
   const watchPostEffect: typeof import('vue')['watchPostEffect']
   const watchSyncEffect: typeof import('vue')['watchSyncEffect']
+  const withdrawal: typeof import('./api/my')['withdrawal']
 }
 // for type re-export
 declare global {
