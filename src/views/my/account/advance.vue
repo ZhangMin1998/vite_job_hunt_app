@@ -25,7 +25,7 @@ import {withdrawal} from '@/api/my'
 
 const store = myStore()
 const state = reactive({
-  price: null,
+  price: 0,
   loading: false
 })
 const leftBack = () => history.back()
@@ -43,8 +43,26 @@ const submitAdvance = async () => {
   showToast(res.msg)
 }
 const allAdvance = () => {
-
+  state.price = store.userInfo.account_price
 }
+watch(() => state.price, (newVal:any, oldVal:any) => {
+  if(parseFloat(newVal) < 0){
+    showToast('提现金额不能为负数')
+    return
+  }
+  if(parseFloat(oldVal) > 50000){
+    showToast('每次提现金额不能超过50000')
+    return
+  }
+  if (newVal) {
+    newVal = newVal.toString()
+    let index = newVal.indexOf('.')
+    if (index > 0 && newVal.length - index > 3) {
+      state.price = parseFloat(oldVal)
+      return
+    }
+  }
+})
 </script>
 
 
