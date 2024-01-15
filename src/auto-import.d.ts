@@ -68,6 +68,7 @@ declare global {
   const readonly: typeof import('vue')['readonly']
   const ref: typeof import('vue')['ref']
   const resolveComponent: typeof import('vue')['resolveComponent']
+  const resumeDetail: typeof import('./api/my')['resumeDetail']
   const sendChatMessageContent: typeof import('./api/message')['sendChatMessageContent']
   const setTaskCollectoin: typeof import('./api/task')['setTaskCollectoin']
   const shallowReactive: typeof import('vue')['shallowReactive']

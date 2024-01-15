@@ -73,3 +73,13 @@ export function withdrawal(data: any) {
     data
   })
 }
+// 获取我的简历详情接口
+export function resumeDetail(data: any) {
+  return request({
+    url: '/admin/resume/getInfoDetailsAPI',
+    method: 'get',
+    params: {
+      id: data.resume_id
+    }
+  })
+}

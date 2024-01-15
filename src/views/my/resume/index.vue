@@ -23,6 +23,8 @@ import ProjectExperience from './components/ProjectExperience.vue'
 import EducationalExperience from './components/EducationExperience.vue'
   
 const store = myStore()
+store.getResumeDetail()
+// store.getResumeDict()
 const leftBack = () => history.back()
 </script>
 

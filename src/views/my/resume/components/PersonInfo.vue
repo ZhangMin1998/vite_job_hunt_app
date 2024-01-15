@@ -2,16 +2,24 @@
   <div class="person_info">
     <div class="left">
       <h3>
-        前端
-        <!-- {{props.item.user_name}} -->
-        <img src="@/assets/img/my/icon-feedback.png" @click="state.show = true"  v-if="props.page!=='preview'" />
+        {{props.item.user_name}}
+        <img
+          src="@/assets/img/my/icon-feedback.png" 
+          @click="state.show = true"  
+          v-if="props.page!=='preview'" 
+        />
       </h3>
-      <!-- <p>{{props.item.work_year}} ｜ {{props.item.highest_education}} ｜ {{props.item.age}}</p> -->
+      <p>{{props.item.work_year}} ｜ {{props.item.highest_education}} ｜ {{props.item.age}}</p>
     </div>
-    <!-- <img :src="props.item.it_head" /> -->
+    <img :src="props.item.it_head" />
   </div>
 
-  <van-popup v-model:show="state.show" position="left" duration="0.2" :style="{ width: '100%',height: '100%' }">
+  <van-popup 
+    v-model:show="state.show" 
+    position="left" 
+    duration="0.2" 
+    :style="{ width: '100%',height: '100%' }"
+  >
     <UserInfoPage></UserInfoPage>
   </van-popup>
 </template>
@@ -34,7 +42,7 @@ const state = reactive({
 })
 const closeChange = () => {
   state.show = false
-  // store.getResumeDetail()
+  store.getResumeDetail()
 }
 provide('popup',{
   closeChange
