@@ -83,3 +83,11 @@ export function resumeDetail(data: any) {
     }
   })
 }
+// 我的简历个人优势保存接口
+export function personAdvantage(data: any) {
+  return request({
+    url: '/resume/advantage',
+    method: 'post',
+    data
+  })
+}

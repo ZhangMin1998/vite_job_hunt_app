@@ -62,6 +62,7 @@ declare global {
   const onServerPrefetch: typeof import('vue')['onServerPrefetch']
   const onUnmounted: typeof import('vue')['onUnmounted']
   const onUpdated: typeof import('vue')['onUpdated']
+  const personAdvantage: typeof import('./api/my')['personAdvantage']
   const provide: typeof import('vue')['provide']
   const putContractOperation: typeof import('./api/contract')['putContractOperation']
   const reactive: typeof import('vue')['reactive']
