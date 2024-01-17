@@ -25,7 +25,9 @@ import {
   Form,
   ActionSheet,
   DatePicker,
-  Picker
+  Picker,
+  Checkbox,
+  CheckboxGroup
 } from 'vant'
 import './utils/rem'
 import { directives } from './utils/common'
@@ -54,6 +56,8 @@ app.use(Form)
 app.use(ActionSheet)
 app.use(DatePicker)
 app.use(Picker)
+app.use(Checkbox)
+app.use(CheckboxGroup)
 
 app.use(store)
 app.use(router)

@@ -24,7 +24,7 @@ import EducationalExperience from './components/EducationExperience.vue'
   
 const store = myStore()
 store.getResumeDetail()
-// store.getResumeDict()
+store.getResumeDict()
 const leftBack = () => history.back()
 </script>
 

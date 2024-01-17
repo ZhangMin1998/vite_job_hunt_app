@@ -91,3 +91,11 @@ export function personAdvantage(data: any) {
     data
   })
 }
+// 获取我的简历类型字典接口
+export function resumeDict() {
+  return request({
+    url: '/conllect/recuit/getRecuit',
+    method: 'get',
+    params: {}
+  })
+}

@@ -45,12 +45,23 @@
     >
       <PositionType></PositionType>
     </van-popup>
+
+    <!--服务类型弹窗-->
+    <van-popup
+      v-model:show="state.showServiceType" 
+      position="top" 
+      duration="0" 
+      :style="{ width: '100%',height: '100%' }"
+    >
+      <ServiceTypePopup></ServiceTypePopup>
+    </van-popup>
   </div>
 </template>
 
 <script setup lang="ts">
 import {myStore} from '@/store/my'
 import PositionType from '@/views/task/components/PositionType.vue'
+import ServiceTypePopup from '@/views/my/resume/components/ServiceTypePopup.vue'
 
 const store = myStore()
 const state = reactive({
