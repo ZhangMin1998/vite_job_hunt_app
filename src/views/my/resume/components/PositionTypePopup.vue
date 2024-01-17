@@ -33,6 +33,14 @@
         is-link
         @click="state.showPriceType = true"
       />
+      <van-action-sheet
+        v-model:show="state.showPriceType"
+        :actions="store.salaryScope"
+        cancel-text="取消"
+        close-on-click-action
+        @cancel="state.showPriceType=false"
+        @select="priceSelect"
+      />
     </div>
     <button class="wy-submit" @click="submit">保存</button>
 
@@ -75,6 +83,9 @@ const state = reactive({
 const {closeChange} = inject('popup')
 const submit = async () => {
 
+}
+const priceSelect = (value) => {
+  state.priceValue = value.name
 }
 const closePositionType = (name) => {
   if(name) state.positionValue = name

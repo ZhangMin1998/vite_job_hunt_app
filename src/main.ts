@@ -27,7 +27,8 @@ import {
   DatePicker,
   Picker,
   Checkbox,
-  CheckboxGroup
+  CheckboxGroup,
+  ActionSheet
 } from 'vant'
 import './utils/rem'
 import { directives } from './utils/common'
@@ -58,6 +59,7 @@ app.use(DatePicker)
 app.use(Picker)
 app.use(Checkbox)
 app.use(CheckboxGroup)
+app.use(ActionSheet)
 
 app.use(store)
 app.use(router)
