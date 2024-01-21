@@ -12,7 +12,7 @@
       @click="setSkill(index)"
       v-for="(item,index) in state.skillList" 
       :key="index" 
-      :class="item.active?'active':''"
+      :class="item.active ? 'active' : ''"
     >
       {{item.title}}
       <van-icon @click.stop="clearSkill(index)" name="close" />
@@ -53,7 +53,35 @@ const state = reactive({
 })
 
 const setInfo = () => {
-
+  if(store.resumeInfo.sys_skill_ids) {
+    var arr = []
+    var skill = store.resumeInfo.sys_skill_ids.split(',')
+    for(var i = 0; i < store.sysSkillList.length; i++){
+      var flag = false
+      for(var j = 0; j < skill.length; j++){
+        if(skill[j] === store.sysSkillList[i].title){
+          flag = true
+          break;
+        }
+      }
+      arr.push({
+        title: store.sysSkillList[i].title,
+        active: flag
+      })
+    }
+    state.sysSkill = arr
+  }
+  if(store.resumeInfo.skill_ids){
+    var arr = []
+    var skill = store.resumeInfo.skill_ids.split(',')
+    for(var i = 0;i<skill.length;i++){
+      arr.push({
+        title: skill[i],
+        active: true
+      })
+    }
+    state.skillList = arr
+  }
 }
 const submit = async() => {
 
@@ -71,6 +99,9 @@ const skillChange = () => {
   })
   state.value = ''
   state.show = false
+}
+const clearSkill = (index) => {
+  state.skillList.splice(index,1)
 }
 if(store.sysSkillList.length === 0){
   (async function(){
