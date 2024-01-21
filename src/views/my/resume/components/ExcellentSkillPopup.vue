@@ -84,7 +84,32 @@ const setInfo = () => {
   }
 }
 const submit = async() => {
-
+  var arr = []
+  for(var i =0;i<state.skillList.length;i++){
+    if(state.skillList[i].active){
+      arr.push(state.skillList[i].title)
+    }
+  }
+  var sysArr = []
+  for(var j = 0;j<state.sysSkill.length;j++){
+    if(state.sysSkill[j].active){
+      sysArr.push(state.sysSkill[j].title)
+    }
+  }
+  if(sysArr.length===0){
+    showToast('请选择一项非自定义技能')
+    return
+  }
+  const res = await resumeSkill({
+    "skill_ids": String(arr), 
+    "sys_skill_ids": String(sysArr) 
+  })
+  if(res){
+    showToast('保存成功')
+    closeChange()
+  }else{
+    showToast('保存失败')
+  }
 }
 const setSysSkill = (index) => {
   state.sysSkill[index].active = !state.sysSkill[index].active

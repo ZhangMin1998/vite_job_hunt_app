@@ -117,3 +117,11 @@ export function labelsSkill() {
     }
   })
 }
+// 我的简历擅长技能保存接口
+export function resumeSkill(data: any) {
+  return request({
+    url: '/resume/skill',
+    method: 'post',
+    data
+  })
+}
