@@ -68,8 +68,10 @@
 
 <script setup lang="ts">
 import {myStore} from '@/store/my'
+import { jobIntention } from '@/api/my'
 import PositionType from '@/views/task/components/PositionType.vue'
 import ServiceTypePopup from '@/views/my/resume/components/ServiceTypePopup.vue'
+import { showToast } from 'vant'
 
 const store = myStore()
 const state = reactive({
@@ -80,18 +82,47 @@ const state = reactive({
   serviceValue: '',
   priceValue: ''
 })
+
+// 数据回显
+if(Object.keys(store.resumeInfo).length !== 0){
+  state.positionValue = store.resumeInfo.position_name
+  state.serviceValue = store.resumeInfo.service_mode
+  state.priceValue = store.resumeInfo.service_price
+}
 const {closeChange} = inject('popup')
 const submit = async () => {
-
+  if(!state.positionValue){
+    showToast('请选择职位类型')
+    return
+  }
+  if(!state.serviceValue){
+    showToast('请选择服务类型')
+    return
+  }
+  if(!state.priceValue){
+    showToast('请选择服务价格')
+    return
+  }
+  const res = await jobIntention({
+    "position_name": state.positionValue, 
+    "service_mode": state.serviceValue, 
+    "service_price": state.priceValue 
+  })
+  if(res){
+    closeChange()
+    showToast('保存成功')
+  }else{
+    showToast('保存失败')
+  }
 }
-const priceSelect = (value) => {
+const priceSelect = (value:any) => {
   state.priceValue = value.name
 }
-const closePositionType = (name) => {
+const closePositionType = (name:any) => {
   if(name) state.positionValue = name
   state.showPositionType = false
 }
-const closeServiceType = (name) => {
+const closeServiceType = (name:any) => {
   if(name) state.serviceValue = name
   state.showServiceType = false
 }

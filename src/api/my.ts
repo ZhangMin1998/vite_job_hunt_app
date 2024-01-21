@@ -99,3 +99,11 @@ export function resumeDict() {
     params: {}
   })
 }
+// 我的简历求职意愿保存接口
+export function jobIntention(data: any) {
+  return request({
+    url: '/resume/job_intention',
+    method: 'post',
+    data
+  })
+}
