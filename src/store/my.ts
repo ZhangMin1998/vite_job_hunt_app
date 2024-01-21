@@ -1,5 +1,5 @@
 import { defineStore } from "pinia"
-import { getUserInfo, resumeDetail, resumeDict } from "@/api/my"
+import { getUserInfo, resumeDetail, resumeDict, labelsSkill } from "@/api/my"
 
 export const myStore = defineStore({
   id: 'my',
@@ -52,6 +52,12 @@ export const myStore = defineStore({
             })
         }
         this.salaryScope = arr
+      }
+    },
+    async getLabelsSkill(){
+      const res = await labelsSkill()
+      if(res){
+        this.sysSkillList = res.data
       }
     }
   }

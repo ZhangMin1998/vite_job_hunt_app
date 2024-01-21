@@ -45,6 +45,7 @@ declare global {
   const isReadonly: typeof import('vue')['isReadonly']
   const isRef: typeof import('vue')['isRef']
   const jobIntention: typeof import('./api/my')['jobIntention']
+  const labelsSkill: typeof import('./api/my')['labelsSkill']
   const login: typeof import('./api/user')['login']
   const markRaw: typeof import('vue')['markRaw']
   const nextTick: typeof import('vue')['nextTick']

@@ -107,3 +107,13 @@ export function jobIntention(data: any) {
     data
   })
 }
+// 获取我的简历技能字典接口
+export function labelsSkill() {
+  return request({
+    url: '/resume/labels_skill',
+    method: 'get',
+    params: {
+        pid: 4
+    }
+  })
+}
