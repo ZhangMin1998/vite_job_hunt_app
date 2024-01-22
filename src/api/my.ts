@@ -125,3 +125,11 @@ export function resumeSkill(data: any) {
     data
   })
 }
+// 我的简历工作经历删除接口
+export function workDelete(data: any) {
+  return request({
+    url: '/job/resume/work/delete',
+    method: 'delete',
+    params: data
+  })
+}

@@ -73,6 +73,7 @@ declare global {
   const resolveComponent: typeof import('vue')['resolveComponent']
   const resumeDetail: typeof import('./api/my')['resumeDetail']
   const resumeDict: typeof import('./api/my')['resumeDict']
+  const resumeSkill: typeof import('./api/my')['resumeSkill']
   const sendChatMessageContent: typeof import('./api/message')['sendChatMessageContent']
   const setTaskCollectoin: typeof import('./api/task')['setTaskCollectoin']
   const shallowReactive: typeof import('vue')['shallowReactive']
@@ -99,6 +100,7 @@ declare global {
   const watchPostEffect: typeof import('vue')['watchPostEffect']
   const watchSyncEffect: typeof import('vue')['watchSyncEffect']
   const withdrawal: typeof import('./api/my')['withdrawal']
+  const workDelete: typeof import('./api/my')['workDelete']
 }
 // for type re-export
 declare global {
