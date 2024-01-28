@@ -208,11 +208,11 @@ const sexSelect = (value:any) => {
   state.sex = value.name
 }
 const birthdayConfirm = (value:any) => {
-  state.birthday = value.getFullYear() + '-' + (value.getMonth()+1)
+  state.birthday = value.selectedValues[0] + '-' + value.selectedValues[1] + '-' + value.selectedValues[2]
   state.showBirthday = false
 }
 const workTimeConfirm = (value:any) => {
-  state.workTime = value.getFullYear() + '-' + (value.getMonth()+1)
+  state.workTime = value.selectedValues[0] + '-' + value.selectedValues[1] + '-' + value.selectedValues[2]
   state.showWorkTime = false
 }
 const cityConfirm = (value:any) => {

@@ -133,3 +133,19 @@ export function workDelete(data: any) {
     params: data
   })
 }
+// 我的简历工作经历添加接口
+export function addWorkExper(data: any) {
+  return request({
+      url: '/admin/resume/work/add',
+      method: 'post',
+      data
+  })
+}
+// 我的简历工作经历修改接口
+export function editWorkExper(data: any) {
+  return request({
+      url: '/resume/work/edit',
+      method: 'put',
+      data
+  })
+}

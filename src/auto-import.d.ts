@@ -7,6 +7,7 @@ export {}
 declare global {
   const EffectScope: typeof import('vue')['EffectScope']
   const addChatMessageWords: typeof import('./api/message')['addChatMessageWords']
+  const addWorkExper: typeof import('./api/my')['addWorkExper']
   const collectList: typeof import('./api/my')['collectList']
   const computed: typeof import('vue')['computed']
   const contractOperation: typeof import('./api/contract')['contractOperation']
@@ -16,6 +17,7 @@ declare global {
   const defineComponent: typeof import('vue')['defineComponent']
   const deleteChatMessageWords: typeof import('./api/message')['deleteChatMessageWords']
   const editChatMessageWords: typeof import('./api/message')['editChatMessageWords']
+  const editWorkExper: typeof import('./api/my')['editWorkExper']
   const effectScope: typeof import('vue')['effectScope']
   const getBannerList: typeof import('./api/task')['getBannerList']
   const getChatMessageContent: typeof import('./api/message')['getChatMessageContent']
