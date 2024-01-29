@@ -149,3 +149,28 @@ export function editWorkExper(data: any) {
       data
   })
 }
+// 我的简历工作经历删除接口
+export function projectDelete(data: any) {
+  return request({
+      url: '/admin/resume/project/delete',
+      method: 'delete',
+      data,
+      params: data
+  })
+}
+// 我的简历项目经历添加接口
+export function addProjectExper(data: any) {
+  return request({
+      url: '/admin/resume/project/add',
+      method: 'post',
+      data
+  })
+}
+// 我的简历项目经历修改接口
+export function editProjectExper(data: any) {
+  return request({
+      url: '/admin/resume/project/edit',
+      method: 'put',
+      data
+  })
+}

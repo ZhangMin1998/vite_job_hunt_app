@@ -7,6 +7,7 @@ export {}
 declare global {
   const EffectScope: typeof import('vue')['EffectScope']
   const addChatMessageWords: typeof import('./api/message')['addChatMessageWords']
+  const addProjectExper: typeof import('./api/my')['addProjectExper']
   const addWorkExper: typeof import('./api/my')['addWorkExper']
   const collectList: typeof import('./api/my')['collectList']
   const computed: typeof import('vue')['computed']
@@ -17,6 +18,7 @@ declare global {
   const defineComponent: typeof import('vue')['defineComponent']
   const deleteChatMessageWords: typeof import('./api/message')['deleteChatMessageWords']
   const editChatMessageWords: typeof import('./api/message')['editChatMessageWords']
+  const editProjectExper: typeof import('./api/my')['editProjectExper']
   const editWorkExper: typeof import('./api/my')['editWorkExper']
   const effectScope: typeof import('vue')['effectScope']
   const getBannerList: typeof import('./api/task')['getBannerList']
@@ -67,6 +69,7 @@ declare global {
   const onUnmounted: typeof import('vue')['onUnmounted']
   const onUpdated: typeof import('vue')['onUpdated']
   const personAdvantage: typeof import('./api/my')['personAdvantage']
+  const projectDelete: typeof import('./api/my')['projectDelete']
   const provide: typeof import('vue')['provide']
   const putContractOperation: typeof import('./api/contract')['putContractOperation']
   const reactive: typeof import('vue')['reactive']

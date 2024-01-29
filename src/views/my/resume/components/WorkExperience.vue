@@ -35,6 +35,7 @@
         <img v-if="props.page !== 'preview'"  @click="submitDelete(item.id)" src="@/assets/img/icon/icon-delete.png" class="delete" />
       </template>
     </van-swipe-cell>
+    <label v-else>请您填写工作经历</label>
   </div>
 
   <van-popup 
