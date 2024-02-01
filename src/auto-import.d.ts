@@ -18,6 +18,7 @@ declare global {
   const defineComponent: typeof import('vue')['defineComponent']
   const deleteChatMessageWords: typeof import('./api/message')['deleteChatMessageWords']
   const editChatMessageWords: typeof import('./api/message')['editChatMessageWords']
+  const editEdu: typeof import('./api/my')['editEdu']
   const editProjectExper: typeof import('./api/my')['editProjectExper']
   const editWorkExper: typeof import('./api/my')['editWorkExper']
   const effectScope: typeof import('vue')['effectScope']

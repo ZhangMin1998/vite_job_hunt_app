@@ -29,13 +29,13 @@
     duration="0.2" 
     :style="{ width: '100%',height: '100%' }"
   >
-    <ProjectExperiencePopup :item="state.item"></ProjectExperiencePopup>
+    <EducationalExperiencePopup :item="state.item"></EducationalExperiencePopup>
   </van-popup>
 </template>
 
 <script setup lang="ts">
 import {myStore} from '@/store/my'
-import ProjectExperiencePopup from './ProjectExperiencePopup.vue'
+import EducationalExperiencePopup from './EducationalExperiencePopup.vue'
 import { showToast } from 'vant'
 import { workDelete } from '@/api/my'
 

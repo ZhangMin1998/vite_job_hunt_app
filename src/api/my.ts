@@ -136,41 +136,49 @@ export function workDelete(data: any) {
 // 我的简历工作经历添加接口
 export function addWorkExper(data: any) {
   return request({
-      url: '/admin/resume/work/add',
-      method: 'post',
-      data
+    url: '/admin/resume/work/add',
+    method: 'post',
+    data
   })
 }
 // 我的简历工作经历修改接口
 export function editWorkExper(data: any) {
   return request({
-      url: '/resume/work/edit',
-      method: 'put',
-      data
+    url: '/resume/work/edit',
+    method: 'put',
+    data
   })
 }
 // 我的简历工作经历删除接口
 export function projectDelete(data: any) {
   return request({
-      url: '/admin/resume/project/delete',
-      method: 'delete',
-      data,
-      params: data
+    url: '/admin/resume/project/delete',
+    method: 'delete',
+    data,
+    params: data
   })
 }
 // 我的简历项目经历添加接口
 export function addProjectExper(data: any) {
   return request({
-      url: '/admin/resume/project/add',
-      method: 'post',
-      data
+    url: '/admin/resume/project/add',
+    method: 'post',
+    data
   })
 }
 // 我的简历项目经历修改接口
 export function editProjectExper(data: any) {
   return request({
-      url: '/admin/resume/project/edit',
-      method: 'put',
-      data
+    url: '/admin/resume/project/edit',
+    method: 'put',
+    data
+  })
+}
+// 我的简历教育经历保存接口
+export function editEdu(data: any) {
+  return request({
+    url: '/resume/edu/edit',
+    method: 'put',
+    data
   })
 }
