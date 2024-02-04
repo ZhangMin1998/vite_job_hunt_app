@@ -5,7 +5,7 @@
       <van-icon 
         name="add-o" 
         @click="addWork"
-        v-if="props.page!=='preview'" 
+        v-if="props.page !== 'preview'" 
       />
     </h3>
     <van-swipe-cell
@@ -16,7 +16,7 @@
       <h4>
         {{item.project_name}}
         <van-icon 
-          v-if="props.page!=='preview'"  
+          v-if="props.page !== 'preview'"  
           @click="editWork(item)" 
           name="arrow"
         />

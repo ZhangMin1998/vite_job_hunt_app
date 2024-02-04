@@ -5,14 +5,14 @@
       <van-icon 
         name="add-o" 
         @click="editWork"
-        v-if="props.page!=='preview'" 
+        v-if="props.page !== 'preview'" 
       />
     </h3>
     <div v-if="store.resumeInfo.school_name">
       <h4>
         {{store.resumeInfo.school_name}}
         <van-icon 
-          v-if="props.page!=='preview'"  
+          v-if="props.page !== 'preview'"  
           @click="editWork" 
           name="arrow"
         />

@@ -5,7 +5,7 @@
       <van-icon 
         name="add-o" 
         @click="state.show = true" 
-        v-if="props.page!=='preview'" 
+        v-if="props.page !== 'preview'" 
       />
     </h3>
     <dl 

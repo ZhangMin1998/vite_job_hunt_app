@@ -16,7 +16,7 @@
       <h4>
         {{item.company_name}}
         <van-icon 
-          v-if="props.page!=='preview'"  
+          v-if="props.page !== 'preview'"  
           @click="editWork(item)" 
           name="arrow"
         />

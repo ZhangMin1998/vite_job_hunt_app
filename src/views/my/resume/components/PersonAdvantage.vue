@@ -6,7 +6,7 @@
       <img
         src="@/assets/img/my/icon-feedback.png" 
         @click="state.show = true"  
-        v-if="props.page!=='preview'" 
+        v-if="props.page !== 'preview'" 
       />
     </h3>
     <label>{{store.resumeInfo.advantage||'请您填写个人优势'}}</label>

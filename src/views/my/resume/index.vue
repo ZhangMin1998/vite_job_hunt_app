@@ -9,7 +9,9 @@
     <ProjectExperience></ProjectExperience>
     <EducationalExperience></EducationalExperience>
   </div>
-  <button class="resume_btn">预览简历</button>
+  <router-link to="/my/resume/preview">
+    <button class="resume_btn">预览简历</button>
+  </router-link>
 </template>
 
 <script setup lang="ts">

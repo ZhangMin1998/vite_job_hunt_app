@@ -6,7 +6,7 @@
         <img
           src="@/assets/img/my/icon-feedback.png" 
           @click="state.show = true"  
-          v-if="props.page!=='preview'" 
+          v-if="props.page !== 'preview'" 
         />
       </h3>
       <p>{{props.item.work_year}} ｜ {{props.item.highest_education}} ｜ {{props.item.age}}</p>
