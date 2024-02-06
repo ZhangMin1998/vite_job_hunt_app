@@ -111,6 +111,14 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/my/resume/preview.vue')
   },
   {
+    path: '/my/contract/:id',
+    component: () => import('@/views/my/contract/index.vue')
+  },
+  // {
+  //   path: '/my/contract/add',
+  //   component: () => import('@/views/my/contract/add.vue')
+  // },
+  {
     path: '/my/collect',
     component: () => import('@/views/my/collect/index.vue')
   },

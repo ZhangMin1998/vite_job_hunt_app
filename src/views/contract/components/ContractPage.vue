@@ -40,12 +40,24 @@ const tabs = [
     text: '已失效'
   }
 ]
+const props = defineProps({
+  type: {
+    type: String
+  }
+})
 const state = reactive({
-  type: tabs[0].type,
+  type: props.type || tabs[0].type,
   loading: false,
   list: [],
   acitveIndex: 0
 })
+
+if(props.type === '0') {
+  tabs.unshift({
+    type: 0,
+    text: '全部'
+  })
+}
 
 const queryContractAllList = async () => {
   state.loading = true

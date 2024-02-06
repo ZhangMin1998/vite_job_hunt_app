@@ -36,16 +36,16 @@
     <div class="my_contract">
       <div class="my_title">
         <h3>我的合约</h3>
-        <span>
+        <span @click="gotoPage('/my/contract/0')">
           查看全部合约
           <van-icon name="arrow" />
         </span>
       </div>
       <div class="my_contract_cur">
-        <span><img src="@/assets/img/my/contract-be-signed.png" />待签约</span>
-        <span><img src="@/assets/img/my/contract-in-performance.png" />履约中</span>
-        <span><img src="@/assets/img/my/contract-completed.png" />已完成</span>
-        <span><img src="@/assets/img/my/contract-canceled.png" />已取消</span>
+        <span @click="gotoPage('/my/contract/2')"><img src="@/assets/img/my/contract-be-signed.png" />待签约</span>
+        <span @click="gotoPage('/my/contract/3')"><img src="@/assets/img/my/contract-in-performance.png" />履约中</span>
+        <span @click="gotoPage('/my/contract/4')"><img src="@/assets/img/my/contract-completed.png" />已完成</span>
+        <span @click="gotoPage('/my/contract/5')"><img src="@/assets/img/my/contract-canceled.png" />已取消</span>
       </div>
     </div>
 
