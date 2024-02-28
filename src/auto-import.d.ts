@@ -6,6 +6,7 @@
 export {}
 declare global {
   const EffectScope: typeof import('vue')['EffectScope']
+  const addAuthReal: typeof import('./api/my')['addAuthReal']
   const addChatMessageWords: typeof import('./api/message')['addChatMessageWords']
   const addProjectExper: typeof import('./api/my')['addProjectExper']
   const addWorkExper: typeof import('./api/my')['addWorkExper']

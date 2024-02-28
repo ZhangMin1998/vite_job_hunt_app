@@ -53,7 +53,7 @@
       <div class="my_title">
         <h3>常用功能</h3>
       </div>
-      <div class="my_item">
+      <div class="my_item"  @click="gotoPage('/my/user/authReal')">
         <img src="@/assets/img/my/icon-real-name-auth.png" />
         <label>实名认证</label>
         <span><van-icon name="arrow" /></span>
