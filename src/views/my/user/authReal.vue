@@ -33,6 +33,7 @@
 <script setup lang="ts">
 import { addAuthReal } from '@/api/my'
 import { showToast } from 'vant'
+import UploadImage from '../components/UploadImage.vue'
 
 const state = reactive({
   name: '',

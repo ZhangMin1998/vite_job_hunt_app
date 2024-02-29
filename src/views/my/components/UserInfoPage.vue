@@ -155,9 +155,17 @@ if(!mStore.userInfo.user_name) {
   setInfo()
 }
 
-const onClickLeft = () => history.back()
 const afterRead = async (file:any) => {
-  console.log(file)
+  file.status = 'uploading'
+  file.message = '上传中...'
+  let param = new FormData()
+  param.append('user','test')
+  param.append('file',file.file)
+  const res = await uploadImage(param)
+  file.url = res.imageUrl
+  file.status = 'done'
+  file.message = '上传成功'
+  state.fileList = [file]
 }
 const deleteFile = () => {
 
