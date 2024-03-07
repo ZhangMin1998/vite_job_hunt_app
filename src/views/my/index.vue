@@ -61,7 +61,7 @@
         <label>实名认证</label>
         <span><van-icon name="arrow" /></span>
       </div>
-      <div class="my_item">
+      <div class="my_item" @click="state.show = true">
         <img src="@/assets/img/my/icon-account-manager.png" />
         <label>专属客户经理</label>
         <span><img src="@/assets/img/icon/icon-message.png" />无忧经理<van-icon name="arrow" /></span>
@@ -93,16 +93,25 @@
         <span class="col-9">当前为IT企业人才身份<van-icon name="arrow" /></span>
       </div>
     </div>
+    <!--弹窗-->
+    <van-popup v-model:show="state.show" duration="0" :style="{ width: '13.07rem',height: '15.44rem',borderRadius:'0.53rem' }">
+      <CustomerManager @back="state.show = false" :item="store.userInfo"></CustomerManager>
+    </van-popup>
   </div>
   <FooterTabbar></FooterTabbar>
 </template>
 
 <script setup lang="ts">
 import FooterTabbar from '@/components/FooterTabbar.vue'
+import CustomerManager from './components/CustomerManager.vue'
 import { myStore } from '@/store/my'
 
 const store = myStore()
 const router = useRouter()
+const state = reactive({
+  show: false,
+  count: {}
+})
 const gotoPage = (path:any) => {
   router.push(path)
 }
