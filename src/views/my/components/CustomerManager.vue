@@ -21,8 +21,10 @@
 </template>
 
 <script setup lang="ts">
+import useClipboard from 'vue-clipboard3'
 import { showToast } from 'vant'
 
+const { toClipboard } = useClipboard()
 const props = defineProps({
   item: {
     type: Object
@@ -31,6 +33,7 @@ const props = defineProps({
 const emits = defineEmits(['back'])
 
 const shareLink = () => {
+  toClipboard(props.item.manage_name)
   showToast('复制成功')
 }
 </script>

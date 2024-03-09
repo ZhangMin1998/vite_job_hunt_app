@@ -14,6 +14,7 @@
     "pinia": "^2.1.7",
     "vant": "^4.8.0",
     "vue": "^3.3.8",
+    "vue-clipboard3": "^2.0.0",
     "vue-router": "^4.2.5"
   },
   "devDependencies": {
