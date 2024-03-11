@@ -69,7 +69,7 @@
     </div>
 
     <div class="my_common">
-      <div class="my_item">
+      <div class="my_item" @click="gotoPage('/my/feedback')">
         <img src="@/assets/img/my/icon-feedback.png" />
         <label>意见反馈</label>
         <span><van-icon name="arrow" /></span>

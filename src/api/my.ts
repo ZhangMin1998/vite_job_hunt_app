@@ -191,3 +191,11 @@ export function addAuthReal(data: any) {
     data
   })
 }
+// 意见反馈保存接口
+export function addFeedback(data: any) {
+  return request({
+    url: '/feedback/add',
+    method: 'post',
+    data
+  })
+}
