@@ -129,7 +129,11 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/talent/details/:id',
     component: () => import('@/views/talent/details.vue')
-  }
+  },
+  {
+    path: '/my/about',
+    component: () => import('@/views/my/about/index.vue')
+  },
 ]
 
 const router = createRouter({

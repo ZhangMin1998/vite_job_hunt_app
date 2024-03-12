@@ -74,7 +74,7 @@
         <label>意见反馈</label>
         <span><van-icon name="arrow" /></span>
       </div>
-      <div class="my_item">
+      <div class="my_item" @click="gotoPage('/my/about')">
         <img src="@/assets/img/my/icon-about.png" />
         <label>关于我们</label>
         <span><van-icon name="arrow" /></span>
