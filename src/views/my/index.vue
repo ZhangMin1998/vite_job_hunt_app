@@ -87,7 +87,7 @@
         <label>意见反馈</label>
         <span><van-icon name="arrow" /></span>
       </div> -->
-      <div class="my_item">
+      <div class="my_item" @click="gotoPage('/my/user/identitySwitch')">
         <img src="@/assets/img/my/icon-switch-role.png" />
         <label>切换身份</label>
         <span class="col-9">当前为IT企业人才身份<van-icon name="arrow" /></span>
