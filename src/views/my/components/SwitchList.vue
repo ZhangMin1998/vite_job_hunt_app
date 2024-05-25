@@ -1,40 +1,82 @@
 <template>
-  <div class="swith-item">
+  <div class="swith-item" @click="setRole(1)">
     <div class="item-cont">
       <img src="@/assets/img/my/icon-personnel.png" />
       <div>
         <h5>IT企业人才</h5>
-        <p>未申请</p>
+        <p v-if="store.userInfo.it_enterprise !== 1">未申请</p>
       </div>
       <img class="item-back" src="@/assets/img/my/personnel-bg.png" />
-      <strong>当前身份</strong>
+      <strong v-if="store.userInfo.role === 1">当前身份</strong>
     </div>
   </div>
 
-  <div class="swith-item">
+  <div class="swith-item" @click="setRole(2)">
     <div class="item-cont">
       <img src="@/assets/img/my/icon-controller.png" />
       <div>
         <h5>管理端</h5>
-        <p>未申请</p>
+        <p v-if="store.userInfo.it_enterprise !== 1">未申请</p>
       </div>
       <img class="item-back" src="@/assets/img/my/controller-bg.png" />
-      <strong>当前身份</strong>
+      <strong v-if="store.userInfo.role === 2">当前身份</strong>
     </div>
   </div>
 
-  <div class="swith-item">
+  <div class="swith-item" @click="setRole(3)">
     <div class="item-cont">
       <img src="@/assets/img/my/icon-enterprise.png" />
       <div>
         <h5>企业端</h5>
-        <p>未申请</p>
+        <p v-if="store.userInfo.it_enterprise !== 1">未申请</p>
       </div>
       <img class="item-back" src="@/assets/img/my/enterprise-bg.png" />
-      <strong>当前身份</strong>
+      <strong  v-if="store.userInfo.role === 3">当前身份</strong>
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+import { myStore } from '@/store/my'
+import {addRole} from '@/api/my'
+import { showToast } from 'vant'
+
+const store = myStore()
+const state = {
+  role: store.userInfo.role
+}
+
+if (!Object.keys(store.userInfo).length) {
+  store.queryUserInfo()
+}
+
+const setRole = async (role) => {
+  if (state.role === role) return
+  let bool = false
+  if (role === 1 && store.userInfo.it_enterprise === 1){
+    bool = true
+  }
+  if(role === 2 && store.userInfo.manage === 1){
+    bool = true
+  }
+  if(role === 3 && store.userInfo.enterprise === 1){
+    bool = true
+  }
+  if (bool) {
+    const res = await addRole({
+      "role": role
+    })
+    if (res) {
+      showToast('身份切换成功')
+      store.queryUserInfo()
+      // state.role = role
+      // localStorage.setItem('role',role)
+    }
+  } else {
+
+  }
+}
+</script>
 
 <style lang="less" scoped>
 .swith-item{

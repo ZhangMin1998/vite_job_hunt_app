@@ -10,6 +10,7 @@ declare global {
   const addChatMessageWords: typeof import('./api/message')['addChatMessageWords']
   const addFeedback: typeof import('./api/my')['addFeedback']
   const addProjectExper: typeof import('./api/my')['addProjectExper']
+  const addRole: typeof import('./api/my')['addRole']
   const addWorkExper: typeof import('./api/my')['addWorkExper']
   const collectList: typeof import('./api/my')['collectList']
   const computed: typeof import('vue')['computed']

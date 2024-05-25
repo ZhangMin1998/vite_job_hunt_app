@@ -199,3 +199,11 @@ export function addFeedback(data: any) {
     data
   })
 }
+// 身份切换保存接口
+export function addRole(data: any) {
+  return request({
+      url: '/user/identity/switch',
+      method: 'post',
+      data
+  })
+}
