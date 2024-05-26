@@ -134,6 +134,10 @@ const routes: Array<RouteRecordRaw> = [
     path: '/my/about',
     component: () => import('@/views/my/about/index.vue')
   },
+  {
+    path: '/my/partner/person',
+    component: () => import('@/views/my/partner/person.vue')
+  },
 ]
 
 const router = createRouter({

@@ -34,16 +34,30 @@
       <strong  v-if="store.userInfo.role === 3">当前身份</strong>
     </div>
   </div>
+
+  <van-popup
+    v-model:show="state.show"
+    duration="0.1"
+    :style="{ width: '13.07rem',height: '15.44rem',borderRadius:'0.53rem' }"
+  >
+    <IdentityPopup
+      @back="state.show = false"
+      :role="state.switchRole"
+    ></IdentityPopup>
+  </van-popup>
 </template>
 
 <script setup lang="ts">
 import { myStore } from '@/store/my'
 import {addRole} from '@/api/my'
 import { showToast } from 'vant'
+import IdentityPopup from '@/views/my/components/IdentityPopup.vue'
 
 const store = myStore()
 const state = {
-  role: store.userInfo.role
+  role: store.userInfo.role,
+  switchRole: store.userInfo.role,
+  show: false
 }
 
 if (!Object.keys(store.userInfo).length) {
@@ -73,7 +87,8 @@ const setRole = async (role) => {
       // localStorage.setItem('role',role)
     }
   } else {
-
+    state.switchRole = role
+    state.show = true
   }
 }
 </script>
