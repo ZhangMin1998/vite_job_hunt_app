@@ -78,13 +78,11 @@ const setRole = async (role) => {
   }
   if (bool) {
     const res = await addRole({
-      "role": role
+      "role": role+
     })
     if (res) {
       showToast('身份切换成功')
       store.queryUserInfo()
-      // state.role = role
-      // localStorage.setItem('role',role)
     }
   } else {
     state.switchRole = role
