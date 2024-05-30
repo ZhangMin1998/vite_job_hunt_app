@@ -207,3 +207,11 @@ export function addRole(data: any) {
       data
   })
 }
+// 身份切换人才申请保存接口
+export function addPartnerPerson(data: any) {
+  return request({
+      url: '/settlein/itEnterprise/add',
+      method: 'post',
+      data
+  })
+}

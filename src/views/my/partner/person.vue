@@ -33,6 +33,9 @@
 </template>
 
 <script lang="ts" setup>
+import { addPartnerPerson } from '@/api/my'
+import { showToast } from 'vant'
+
 const state = reactive({
   it_name: '',
   sex: '',
@@ -51,11 +54,50 @@ const sexList = [
     name: '女'
   }
 ]
-const submit = () => {
+const submit = async () => {
+  if(!state.it_name){
+    showToast('请输入姓名')
+    return
+  }
+  if(!state.sex){
+    showToast('请选择性别')
+    return
+  }
+  if(!state.phone){
+    showToast('请输入电话')
+    return
+  }
+  if(!state.age){
+    showToast('请输入年龄')
+    return
+  }
+  if(!state.address){
+    showToast('请输入住址')
+    return
+  }
+  if(!state.work_data){
+    showToast('请输入工作年限')
+    return
+  }
+  if(!state.introduce){
+    showToast('请输入介绍')
+    return
+  }
 
+  const res = await addPartnerPerson(state)
+  if(res){
+    showToast('您的申请已收到，我们会尽快为您审核')
+    state.it_name = ''
+    state.sex = ''
+    state.work_data = ''
+    state.introduce = ''
+    state.age = ''
+    state.phone = ''
+    state.address = ''
+  }
 }
-const setSelect = () => {
-
+const setSelect = (value) => {
+  state.sex = value.name
 }
 </script>
 
@@ -137,5 +179,11 @@ const setSelect = () => {
   color: #FFFFFF;
   display: inline-block;
   margin: 1.97rem 0 1.23rem;
+}
+:deep(.van-field__label){
+  width: 2rem;
+}
+:deep(.van-cell:last-child){
+  flex-flow: column;
 }
 </style>

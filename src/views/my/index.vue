@@ -82,15 +82,15 @@
     </div>
 
     <div class="my_common">
-      <!-- <div class="my_item">
-        <img src="@/assets/img/my/icon-feedback.png" />
-        <label>意见反馈</label>
-        <span><van-icon name="arrow" /></span>
-      </div> -->
       <div class="my_item" @click="gotoPage('/my/user/identitySwitch')">
         <img src="@/assets/img/my/icon-switch-role.png" />
         <label>切换身份</label>
-        <span class="col-9">当前为IT企业人才身份<van-icon name="arrow" /></span>
+        <span class="col-9">
+          当前为
+          {{store.userInfo.role === 1 ? 'IT企业人才' :store.userInfo.role === 3 ? '企业端' : '管理端'}}
+          身份
+          <van-icon name="arrow" />
+        </span>
       </div>
     </div>
     <!--弹窗-->
