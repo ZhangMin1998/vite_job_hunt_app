@@ -96,7 +96,7 @@ const submit = async () => {
     state.address = ''
   }
 }
-const setSelect = (value) => {
+const setSelect = (value:any) => {
   state.sex = value.name
 }
 </script>
