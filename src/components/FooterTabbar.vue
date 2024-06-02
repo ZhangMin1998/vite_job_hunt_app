@@ -1,8 +1,12 @@
 <template>
   <dl>
-    <dt class="icon-task-bar" :class="route.path == '/task' ? 'active' : ''" @click="gotoPage('/task')">
+    <dt v-if="store.role == '1'" class="icon-task-bar" :class="route.path == '/task' ? 'active' : ''" @click="gotoPage('/task')">
       <i></i>
       <p>任务</p>
+    </dt>
+    <dt v-if="store.role == '3'" class="icon-talent-bar" :class="route.path == '/talent' ? 'active' : ''" @click="gotoPage('/talent')">
+      <i></i>
+      <p>IT人才</p>
     </dt>
     <dt class="icon-contract-bar" :class="route.path == '/contract' ? 'active' : ''" @click="gotoPage('/contract')">
       <i></i>
@@ -21,6 +25,9 @@
 
 <script setup lang="ts">
 import { useRoute, useRouter } from 'vue-router'
+import { userStore } from '@/store/user'
+
+const store = userStore()
 
 const route = useRoute()
 const router = useRouter()
@@ -66,6 +73,14 @@ dl{
 }
 .icon-task-bar.active i{
     background: url('@/assets/img/icon/bar-task-active.png') no-repeat;
+    background-size: 100%;
+}
+.icon-talent-bar i{
+    background: url('@/assets/img/icon/bar-talent-link.png') no-repeat;
+    background-size: 100%;
+}
+.icon-talent-bar.active i{
+    background: url('@/assets/img/icon/bar-talent-active.png') no-repeat;
     background-size: 100%;
 }
 .icon-contract-bar i{

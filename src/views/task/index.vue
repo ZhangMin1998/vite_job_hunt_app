@@ -9,7 +9,7 @@
       <input type="text" readonly placeholder="请输入想要搜素的内容" @click="gotoSearch">
       <router-link to="/message/systemList" class="task-icon-message"></router-link>
     </div>
-    <Banner></Banner>
+    <Banner type="2"></Banner>
     <div class="task_title">
       <h3>最新任务</h3>
       <div class="task-positon-pop" @click="state.positionTypeBool = true">

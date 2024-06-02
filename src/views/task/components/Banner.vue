@@ -14,12 +14,17 @@ import { taskStore } from '@/store/task'
 import { getBannerList } from '@/api/task'
 import { showToast } from 'vant'
 
+const props = defineProps({
+  type: {
+    type: Number
+  }
+})
 const store = taskStore()
 
-const { closeCitySwitch } = inject('popup')
+// const { closeCitySwitch } = inject('popup')
 
 const queryBannerList = async () => {
-  const res = await getBannerList({type: 2})
+  const res = await getBannerList({type: props.type})
   if (res) {
     store.setBannerList((res as any).list)
   } else {
