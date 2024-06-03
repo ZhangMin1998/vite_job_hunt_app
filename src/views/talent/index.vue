@@ -103,8 +103,6 @@ const queryTaskAllList = async () => {
     "city": store.cityValue,
   })
   if (res) {
-    console.log('000000000')
-    
     state.taskList = state.taskList.concat((res as any).records)
     state.loading = false
     if (state.taskList.length >= (res as any).total) {
