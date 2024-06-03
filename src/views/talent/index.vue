@@ -249,9 +249,6 @@ provide('popup', {
       }
     }
   }
-  // &::-webkit-scrollbar {
-  //   display: none;
-  // }
 }
 .task_page::-webkit-scrollbar {
     display: none;
